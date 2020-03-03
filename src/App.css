@@ -1,4 +1,42 @@
-.App {
+ul li{
+  font-size: 20px;
+}
+
+.app-wrapper{
+  margin: 0 auto;
+  display: grid;
+
+  width: 1200px;
+
+  grid-template-areas:
+  "h h"
+  "n c";
+
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  /* grid-gap: 10px; */
+}
+
+.header{
+  grid-area: h;
+  background-color: brown;
+}
+
+.header img{
+  width: 80px;
+}
+
+.nav{
+  grid-area: n;
+  background-color: green;
+}
+
+.content{
+  grid-area: c;
+  background-color: blue;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +73,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
