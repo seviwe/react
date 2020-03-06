@@ -12,23 +12,23 @@ import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <div className='app-wrapper'>
-        <Header />
-        <BackgroundImage />
-        <Navbar />
-        <NavbarFriends />
-        <div className="app-wrapper-content">
-          <Route path='/dialogs' component={Dialogs} />
-          <Route path='/profile' component={Profile} />
-          <Route path='/news' component={News} />
-          <Route path='/settings' component={Settings} />
-        </div>
-        <Footer />
-      </div>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<div className='app-wrapper'>
+				<Header />
+				<BackgroundImage />
+				<Navbar />
+				<NavbarFriends />
+				<div className="app-wrapper-content">
+					<Route path='/dialogs' component={Dialogs} />
+					<Route path='/profile' component={Profile} />
+					<Route path='/news' component={News} />
+					<Route path='/settings' component={Settings} />
+				</div>
+				<Footer />
+			</div>
+		</BrowserRouter>
+	);
 }
 
 /* First commit from SEVA@HOME */
