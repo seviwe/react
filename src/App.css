@@ -17,3 +17,9 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px; 
 }
+
+.app-wrapper-content{
+    grid-area: cont;
+    background-color: #9898eb;
+    padding: 1%;
+}
