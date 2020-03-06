@@ -1,6 +1,8 @@
 .nav{
-   grid-area: n;
+   grid-area: navbar;
    background-color: green;
+   height: 300px;
+   padding: 3%;
  } 
 
  .item{

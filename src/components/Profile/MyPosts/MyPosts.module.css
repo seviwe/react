@@ -3,3 +3,7 @@
    grid-area: c;
    background-color: blue;
  }
+
+ textarea{
+   width: 95%;
+ }

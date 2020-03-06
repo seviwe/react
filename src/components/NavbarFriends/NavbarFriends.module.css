@@ -1,0 +1,6 @@
+.navfriends{
+   grid-area: navfr;
+   background-color: rgb(248, 151, 39);
+   height: 200px;
+   padding: 3%;
+ } 

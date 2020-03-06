@@ -1,0 +1,5 @@
+.backimage{
+  grid-area: backimg;
+  background-color: blueviolet;
+  padding: 1%;
+}

@@ -1,0 +1,13 @@
+.avatar{
+   grid-area: avatar;
+   background-color: white;
+   height: 200px;
+   width: 200px;
+   position: absolute;
+   margin: 1px;
+ } 
+
+ .avatar img {
+    width: 200px;
+    border-radius: 120px;
+ }
