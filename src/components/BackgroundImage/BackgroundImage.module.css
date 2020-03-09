@@ -1,5 +1,13 @@
 .backimage{
   grid-area: backimg;
-  background-color: blueviolet;
   padding: 1%;
+
+  background-image: url(https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg);
+  background-position: center; /* Center the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  
+  /*background: #B9D9E3;*/
+  border: 1px solid #ede9e9;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }

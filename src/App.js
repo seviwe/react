@@ -15,19 +15,21 @@ import Music from './components/Music/Music';
 const App = () => {
 	return (
 		<BrowserRouter>
-			<div className='app-wrapper'>
-				<Header />
-				<BackgroundImage />
-				<Navbar />
-				<NavbarFriends />
-				<div className="app-wrapper-content">
-					<Route path='/dialogs' component={Dialogs} />
-					<Route path='/profile' component={Profile} />
-					<Route path='/news' component={News} />
-					<Route path='/music' component={Music} />
-					<Route path='/settings' component={Settings} />
+			<div className="backColor">
+				<div className='app-wrapper'>
+					<Header />
+					<BackgroundImage />
+					<Navbar />
+					<NavbarFriends />
+					<div className="app-wrapper-content">
+						<Route path='/dialogs' component={Dialogs} />
+						<Route path='/profile' component={Profile} />
+						<Route path='/news' component={News} />
+						<Route path='/music' component={Music} />
+						<Route path='/settings' component={Settings} />
+					</div>
+					<Footer />
 				</div>
-				<Footer />
 			</div>
 		</BrowserRouter>
 	);

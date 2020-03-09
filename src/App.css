@@ -2,17 +2,21 @@
   margin: 0 auto;
   display: grid;
 
-  width: 85%;
+  width: 80%;
+
+  /*header header*/
+  /*...*/
+  /*footer footer*/
 
   grid-template-areas:
-  "header  header"
+  "header header"
   "backimg backimg"
   "navbar  cont"
   "navfr   cont"
-  "footer  footer";
+  "footer footer";
 
   /* grid-template-rows: 60px 2fr 2fr 1fr; */
-  
+  /*60 px ... 60 px*/
   grid-template-rows: 60px 230px auto auto 60px;
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px; 
@@ -20,6 +24,13 @@
 
 .app-wrapper-content{
     grid-area: cont;
-    background-color: #9898eb;
     padding: 1%;
+    background: #fdfdfd;
+    border: 1px solid #ede9e9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.backColor{
+  background: #f4f2f2;
 }
