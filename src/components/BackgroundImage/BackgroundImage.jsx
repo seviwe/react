@@ -6,8 +6,6 @@ const BackgroundImage = () => {
 	return (
 		<div className={styles.backimage}>
 			<AvatarImage />
-			{/* <img src="https://ic.pics.livejournal.com/fanatbaikala/61253622/44374/44374_original.jpg"/> */}
-			здесь фоновое изображение
       </div>
 	)
 }

@@ -7,8 +7,12 @@
     padding: 10px;
 }
 
-.dialogsItems .active{
+.dialogsItems .activeLink{
     color: gold;
+}
+
+.dialog a{
+    text-decoration: none;
 }
 
 .messages{

@@ -1,0 +1,9 @@
+.rightBlock{
+   grid-area: rightblock;
+   /* background-color: green; */
+   background: #fdfdfd;
+   border: 1px solid #ede9e9;
+   border-radius: 5px;
+   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+   padding: 7%;
+ } 

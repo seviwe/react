@@ -4,21 +4,16 @@
 
   width: 80%;
 
-  /*header header*/
-  /*...*/
-  /*footer footer*/
-
   grid-template-areas:
-  "header header"
-  "backimg backimg"
-  "navbar  cont"
-  "navfr   cont"
-  "footer footer";
+  "header  header   header"
+  "backimg backimg  backimg"
+  "navbar  cont     rightblock"
+  "navfr   cont     rightblock"
+  "footer  footer   footer";
 
   /* grid-template-rows: 60px 2fr 2fr 1fr; */
-  /*60 px ... 60 px*/
   grid-template-rows: 60px 230px auto auto 60px;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 2fr 8fr 2fr;
   grid-gap: 10px; 
 }
 

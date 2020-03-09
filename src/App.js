@@ -11,6 +11,7 @@ import { Route, BrowserRouter } from "react-router-dom"
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
+import RightBlock from './components/RightBlock/RightBlock';
 
 const App = () => {
 	return (
@@ -28,6 +29,7 @@ const App = () => {
 						<Route path='/music' component={Music} />
 						<Route path='/settings' component={Settings} />
 					</div>
+					<RightBlock />
 					<Footer />
 				</div>
 			</div>
