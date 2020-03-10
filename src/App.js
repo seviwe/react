@@ -29,7 +29,7 @@ const App = () => {
 						<Route path='/music' component={Music} />
 						<Route path='/settings' component={Settings} />
 					</div>
-					<RightBlock />
+					{/* <RightBlock /> */}
 					<Footer />
 				</div>
 			</div>

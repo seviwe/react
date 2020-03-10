@@ -2,18 +2,29 @@
   margin: 0 auto;
   display: grid;
 
-  width: 80%;
+  /* width: 70%; */
+  width: 1000px;
 
-  grid-template-areas:
+  /* grid-template-areas:
   "header  header   header"
   "backimg backimg  backimg"
   "navbar  cont     rightblock"
   "navfr   cont     rightblock"
-  "footer  footer   footer";
+  "footer  footer   footer"; */
+
+  grid-template-areas:
+  "header  header"
+  "backimg backimg"
+  "navbar  cont"
+  "navfr   cont"
+  "footer  footer";
 
   /* grid-template-rows: 60px 2fr 2fr 1fr; */
   grid-template-rows: 60px 230px auto auto 60px;
-  grid-template-columns: 2fr 8fr 2fr;
+  /* grid-template-columns: minmax(100px, 230px) minmax(500px, auto); */
+  grid-template-columns: 2fr 10fr;
+
+  /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
   grid-gap: 10px; 
 }
 
