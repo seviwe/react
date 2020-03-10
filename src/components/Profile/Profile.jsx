@@ -5,6 +5,9 @@ import MyPosts from './MyPosts/MyPosts';
 const Profile = () => {
 	return (
 		<div>
+			<div>
+				Описание пользователя
+			</div>
 			<MyPosts />
 		</div>
 	)

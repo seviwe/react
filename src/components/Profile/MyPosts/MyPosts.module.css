@@ -4,5 +4,9 @@
  }
 
  textarea{
-   width: 95%;
+   width: 100%;
+ }
+
+ .myposts {
+   margin-top: 10px;
  }
