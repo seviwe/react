@@ -23,6 +23,7 @@ let posts = [
     { id: 1, message: 'Hello World!', countLike: 20, countDislike: 6 },
     { id: 2, message: 'It\'s my first post.', countLike: 123, countDislike: 56 },
     { id: 3, message: 'Test meesage', countLike: 500, countDislike: 0 },
+    { id: 4, message: 'Test meesage 2', countLike: 0, countDislike: 0 },
 ];
 
 ReactDOM.render(<App dialogs={dialogs} messages={messages} posts={posts} />, document.getElementById('root'));

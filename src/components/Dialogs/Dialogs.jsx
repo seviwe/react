@@ -5,11 +5,8 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
-	let dialogs = props.dialogs;
-	let messages = props.messages;
-
-	let dialogsElement = dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
-	let messagesElement = messages.map(m => <Message message={m.message} id={m.id} />)
+	let dialogsElement = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
+	let messagesElement = props.messages.map(m => <Message message={m.message} id={m.id} />)
 
 	return (
 		<div className={styles.dialogs}>
