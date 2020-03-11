@@ -11,9 +11,9 @@ import { Route, BrowserRouter } from "react-router-dom"
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
-import RightBlock from './components/RightBlock/RightBlock';
+// import RightBlock from './components/RightBlock/RightBlock';
 
-const App = () => {
+const App = (props) => {
 	return (
 		<BrowserRouter>
 			<div className="backColor">
@@ -23,11 +23,17 @@ const App = () => {
 					<Navbar />
 					<NavbarFriends />
 					<div className="app-wrapper-content">
-						<Route path='/dialogs' component={Dialogs} />
-						<Route path='/profile' component={Profile} />
+						<Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs} messages={props.messages} />} />
+						<Route path='/profile' render={() => <Profile posts={props.posts} />} />
+
 						<Route path='/news' component={News} />
 						<Route path='/music' component={Music} />
 						<Route path='/settings' component={Settings} />
+
+						{/* <Route path='/profile' component={Profile} />
+						<Route path='/news' component={News} />
+						<Route path='/music' component={Music} />
+						<Route path='/settings' component={Settings} /> */}
 					</div>
 					{/* <RightBlock /> */}
 					<Footer />
