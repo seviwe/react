@@ -3,7 +3,6 @@ import styles from './MyPosts.module.css';
 import Post from './Posts/Post';
 
 const MyPosts = (props) => {
-	
 	let postsElement = props.posts.map(p => <Post message={p.message} countLike={p.countLike} countDislike={p.countDislike} />);
 
 	return (
