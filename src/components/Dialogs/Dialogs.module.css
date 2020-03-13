@@ -5,20 +5,32 @@
 
 .dialogsItems {
     padding: 10px;
+    /* background: rgb(228, 228, 228); */
 }
 
-.dialogsItems .activeLink{
+.dialogsItems .activeLink {
     color: green;
 }
 
-.dialog a{
+.dialog a {
     text-decoration: none;
 }
 
-.messages{
+.messages {
     padding: 10px;
 }
 
-.messages .message{
+.verticalLine {
+    border-left: 5px solid #ecebeb;
+    height: 100%;
+    border-radius: 5px;
+}
 
+.sendMessage{
+    /* position: absolute;
+    bottom: 0px; */
+}
+
+textarea{
+    width: 99%;
 }

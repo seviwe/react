@@ -1,7 +1,22 @@
-.activeLink{
+.activeLink {
     color: green;
 }
 
-.dialog a{
+.dialog a {
     text-decoration: none;
+}
+
+.dialog{
+    text-align: center;
+}
+
+.imgDialog {
+    width: 55px;
+    height: 55px;
+    border-radius: 30px;
+}
+
+.name{
+    font-size: 13px;
+    text-align: center;
 }

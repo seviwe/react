@@ -1,14 +1,14 @@
 .avatar{
    grid-area: avatar;
-   background-color: white;
+   /*background-color: white;*/
    height: 200px;
    width: 200px;
    position: absolute;
-   margin: 1px;
+   margin: 1%;
  } 
 
  .avatar img {
     width: 200px;
     border-radius: 120px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); */
  }

@@ -1,13 +1,13 @@
-.header{
-   grid-area: header;
-   /* height: 60px; */
-   background: #fdfdfd;
-   border: 1px solid #ede9e9;
-   border-radius: 5px;
-   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
- }
- 
- .header img{
-   width: 60px;
-   /* border-radius: 30px; */
- }
+.header {
+  grid-area: header;
+  /* height: 60px; */
+  background: #fdfdfd;
+  border: 1px solid #ede9e9;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header img {
+  width: 60px;
+  /* border-radius: 30px; */
+}

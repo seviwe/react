@@ -1,11 +1,18 @@
 import React from 'react';
 import styles from './NavbarFriends.module.css';
+import Friend from './Friend/Friend';
 
-const NavbarFriends = () => {
+const NavbarFriends = (props) => {
+
+	let friendsElement = props.state.friends.map(f => <Friend name={f.name} id={f.id} imgSrc={f.imgSrc} />);
+
 	return (
 		<div className={styles.navfriends}>
-			Блок друзей
-      </div>
+			Friends
+			<div className={styles.navfriendsGrid}>
+				{friendsElement}
+			</div>
+		</div>
 	)
 }
 

@@ -34,13 +34,14 @@ p {
 
 .app-wrapper {
 	grid-template-areas: 
-	"header  header  header  header" 
-	".       backimg backimg      ." 
-	".       navbar  cont         ." 
-	".       navfr   cont         ." 
-	"footer  footer  footer  footer";
-	grid-template-rows: 50px 240px 332px auto 40px;
-	grid-template-columns: 2fr 1fr 5fr 2fr;
+	"header  header  	header   header" 
+	".       backimg 	backimg       ." 
+	".       navbar  	cont          ." 
+	".       navfr   	cont          ." 
+	".       navmusic   cont          ." 
+	"footer  footer  	footer   footer";
+	grid-template-rows: 50px 220px 232px 232px auto 50px;
+	grid-template-columns: 2fr 1.3fr 5fr 2fr;
 	grid-gap: 10px;
 }
 
@@ -50,14 +51,15 @@ p {
 
 @media all and (max-width: 575px) {
 	.app-wrapper {
-		width: 90%;
+		width: 95%;
 		grid-template-areas: 
 		"header header" 
 		"backimg backimg" 
 		"navbar navfr" 
+		"navmusic navmusic"
 		"cont cont" 
 		"footer footer";
-		grid-template-rows: 60px 230px auto 100% 60px;
+		grid-template-rows: 60px 220px auto auto auto 60px;
 		grid-template-columns: auto auto;
 		grid-gap: 10px;
 	}
@@ -71,9 +73,10 @@ p {
 		"header header" 
 		"backimg backimg" 
 		"navbar navfr"
-		 "cont cont" 
-		 "footer footer";
-		grid-template-rows: 60px 230px auto 100% 60px;
+		"navmusic navmusic"
+		"cont cont" 
+		"footer footer";
+		grid-template-rows: 60px 220px auto auto auto 60px;
 		grid-template-columns: auto auto;
 		grid-gap: 10px;
 	}
