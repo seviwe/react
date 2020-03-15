@@ -16,7 +16,7 @@ const MyPosts = (props) => {
 	return (
 		<div className={styles.myposts}>
 			Новый пост:
-			<div>
+			<div className={styles.newPost}>
 				<textarea ref={newPostElement}></textarea>
 				<button onClick={addPost}>Добавить</button>
 				{/* <button>Удалить</button> */}

@@ -10,10 +10,10 @@ const Dialogs = (props) => {
 
 	return (
 		<div className={styles.dialogs}>
-			<div className={styles.dialogsItems}>
+			<div className={styles.dialogsItems + " " + styles.border}>
 				{dialogsElement}
 			</div>
-			<div className={styles.messages + " " + styles.verticalLine}>
+			<div className={styles.messages + " " + styles.border}>
 				{messagesElement}
 				<div className={styles.sendMessage}> 
 					<textarea placeholder="Введите сообщение"></textarea>
