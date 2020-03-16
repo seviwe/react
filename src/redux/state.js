@@ -1,3 +1,5 @@
+import { rerender } from '../render';
+
 let avatarImage = {
     imgs: [
         { id: 1, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFD1Ofi7-DsfgVE7CojIqMuNGYEN1N4dGyec3hJQebtISancyF' },
@@ -47,6 +49,7 @@ let state = {
 export let addPost = (postMessage) => {
     let newPost = { id: 5, message: postMessage, countLike: 0, countDislike: 0 };
     state.profilePage.posts.push(newPost);
+    rerender(state);
 }
 
 export default state;
