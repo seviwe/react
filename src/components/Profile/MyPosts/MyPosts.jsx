@@ -6,23 +6,20 @@ const MyPosts = (props) => {
 
 	let postsElement = props.posts.map(p => <Post message={p.message} countLike={p.countLike} countDislike={p.countDislike} />);
 
-	let newPostElement = React.createRef();
-
 	let addPost = () => {
-		let text = newPostElement.current.value;
-		if (text) {
-			props.addPost(text);
-		}
-		newPostElement.current.value = '';
+		props.addPost(); //вызов функции из state.js для отрисовки поста
 	}
+
+	const onPostChange = (event) => {
+		props.updateNewPostText(event.target.value); //вызов функции для занесения в state каждый символ при наборе текста в textarea 
+	};
 
 	return (
 		<div className={styles.myposts}>
 			Новый пост:
 			<div className={styles.newPost}>
-				<textarea ref={newPostElement}></textarea>
+				<textarea onChange={onPostChange} value={props.newPostText} />
 				<button onClick={addPost}>Добавить</button>
-				{/* <button>Удалить</button> */}
 			</div>
 			<div className={styles.posts}>
 				Посты:

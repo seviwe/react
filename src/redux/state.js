@@ -17,7 +17,8 @@ let state = {
             { id: 2, message: 'It\'s my first post.', countLike: 123, countDislike: 56 },
             { id: 3, message: 'Test meesage', countLike: 500, countDislike: 0 },
             { id: 4, message: 'Test meesage 2', countLike: 0, countDislike: 0 },
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage: {
         dialogs: [
@@ -45,10 +46,18 @@ let state = {
         ]
     }
 }
+
 //функция добавления поста на стену
-export let addPost = (postMessage) => {
-    let newPost = { id: 5, message: postMessage, countLike: 0, countDislike: 0 };
+export let addPost = () => {
+    let newPost = { id: 5, message: state.profilePage.newPostText, countLike: 0, countDislike: 0 };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    rerender(state);
+}
+
+//функция обновления текста в textarea
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
     rerender(state);
 }
 

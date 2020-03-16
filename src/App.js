@@ -7,7 +7,7 @@ import Profile from './components/Profile/Profile';
 import NavbarFriends from './components/NavbarFriends/NavbarFriends';
 import Dialogs from './components/Dialogs/Dialogs';
 import Footer from './components/Footer/Footer';
-import { Route, BrowserRouter } from "react-router-dom"
+import { Route } from "react-router-dom"
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
@@ -26,7 +26,7 @@ const App = (props) => {
 				<NavbarMusic />
 				<div className="app-wrapper-content">
 					<Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} />} />
-					<Route path='/profile' render={() => <Profile state={props.state.profilePage} addPost={props.addPost} />} />
+					<Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText} />} />
 
 					<Route path='/news' component={News} />
 					<Route path='/music' component={Music} />

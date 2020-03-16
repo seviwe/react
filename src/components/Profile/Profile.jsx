@@ -15,7 +15,7 @@ const Profile = (props) => {
 					Место учебы: МИ ВлГУ им. Столетовых '20
 				</div>
 			</div>
-			<MyPosts posts={props.state.posts} addPost={props.addPost} />
+			<MyPosts posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} updateNewPostText={props.updateNewPostText} addPost={props.addPost} />
 		</div>
 	)
 }
