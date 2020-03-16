@@ -8,7 +8,7 @@ const NavbarFriends = (props) => {
 
 	return (
 		<div className={styles.navfriends}>
-			Friends
+			Friends <span className={styles.quantityFriends}>{props.state.friends.length}</span>
 			<div className={styles.navfriendsGrid}>
 				{friendsElement}
 			</div>
