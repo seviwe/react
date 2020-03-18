@@ -22,23 +22,16 @@ const App = (props) => {
 				<Header />
 				<BackgroundImage />
 				<Navbar />
-				<NavbarFriends state={props.state.navbarFriends} />
+				<NavbarFriends state={props.state.friendsPage} />
 				<NavbarMusic />
 				<div className="app-wrapper-content">
-					<Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} />} />
+					<Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} addMessage={props.addMessage} updateNewMessageText={props.updateNewMessageText} />} />
 					<Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText} />} />
-
-					<Route path='/news' component={News} />
-					<Route path='/music' component={Music} />
-					<Route path='/friends' component={Friends} />
-					<Route path='/settings' component={Settings} />
-
-					{/* <Route path='/profile' component={Profile} />
-						<Route path='/news' component={News} />
-						<Route path='/music' component={Music} />
-						<Route path='/settings' component={Settings} /> */}
+					<Route path='/news' render={() => <News />} />
+					<Route path='/music' render={() => <Music />} />
+					<Route path='/friends' render={() => <Friends state={props.state.friendsPage} />} />
+					<Route path='/settings' render={() => <Settings />} />
 				</div>
-				{/* <RightBlock /> */}
 				<Footer />
 			</div>
 		</div>

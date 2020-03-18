@@ -1,4 +1,4 @@
-import { rerender } from '../render';
+let rerender = () => { }
 
 let avatarImage = {
     imgs: [
@@ -27,28 +27,29 @@ let state = {
             { id: 3, name: 'Женя', imgSrc: avatarImage.imgs[3].src },
             { id: 4, name: 'Андрей', imgSrc: avatarImage.imgs[4].src },
             { id: 5, name: 'Александр', imgSrc: avatarImage.imgs[2].src },
-            { id: 6, name: 'Мария', imgSrc: avatarImage.imgs[1].src }
+            { id: 6, name: 'Мария', imgSrc: avatarImage.imgs[1].src },
         ],
         messages: [
             { id: 1, message: 'Привет!' },
             { id: 2, message: 'Как дела?' },
             { id: 3, message: 'Чем занимаешься?' },
+        ],
+        newMessageText: ''
+    },
+    friendsPage: {
+        friends: [
+            { id: 1, imgSrc: avatarImage.imgs[0].src, name: 'Михаил', surname: 'Павлов' },
+            { id: 2, imgSrc: avatarImage.imgs[3].src, name: 'Дмитрий', surname: 'Иванов' },
+            { id: 3, imgSrc: avatarImage.imgs[1].src, name: 'Светлана', surname: 'Ясная' },
+            { id: 4, imgSrc: avatarImage.imgs[1].src, name: 'Елена', surname: 'Гребникова' },
+            { id: 5, imgSrc: avatarImage.imgs[2].src, name: 'Женя', surname: 'Казанский' },
+            { id: 6, imgSrc: avatarImage.imgs[4].src, name: 'Кирилл', surname: 'Эльман' },
         ]
     },
-    navbarFriends: {
-        friends: [
-            { id: 1, imgSrc: avatarImage.imgs[0].src, name: 'Михаил' },
-            { id: 2, imgSrc: avatarImage.imgs[3].src, name: 'Дмитрий' },
-            { id: 3, imgSrc: avatarImage.imgs[1].src, name: 'Светлана' },
-            { id: 4, imgSrc: avatarImage.imgs[1].src, name: 'Елена' },
-            { id: 5, imgSrc: avatarImage.imgs[2].src, name: 'Женя' },
-            { id: 6, imgSrc: avatarImage.imgs[4].src, name: 'Кирилл' },
-        ]
-    }
 }
 
 //функция добавления поста на стену
-export let addPost = () => {
+export const addPost = () => {
     let newPost = { id: 5, message: state.profilePage.newPostText, countLike: 0, countDislike: 0 };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
@@ -56,9 +57,28 @@ export let addPost = () => {
 }
 
 //функция обновления текста в textarea
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
     rerender(state);
+}
+
+//функция добавления поста на стену
+export const addMessage = () => {
+    let newMessage = { id: 4, message: state.dialogsPage.newMessageText };
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerender(state);
+}
+
+//функция обновления текста в textarea
+export const updateNewMessageText = (newText) => {
+    state.dialogsPage.newMessageText = newText;
+    rerender(state);
+}
+
+//наблюдатель
+export const subscribe = (observer) => {
+    rerender = observer;
 }
 
 export default state;

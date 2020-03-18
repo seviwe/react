@@ -17,11 +17,14 @@
 }
 
 .messages {
+    display: grid;
+    grid-template-rows: 9fr 2fr;
 }
 
 .sendMessage{
     /* position: absolute;
     bottom: 0px; */
+    margin-top: 10px;
 }
 
 textarea{

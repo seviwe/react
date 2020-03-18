@@ -1,0 +1,22 @@
+.item {
+  display: grid;
+  color: black;
+  border-radius: 5px;
+  border: 2px solid #ecebeb;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 8px;
+  padding: 5px;
+
+  grid-template-columns: 2fr 10fr;
+  column-gap: 13px;
+}
+
+.item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 30px;
+}
+
+.text{
+  padding-top: 10px;
+}
