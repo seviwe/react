@@ -1,4 +1,8 @@
 .item {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 55px auto;
+    column-gap: 5px;
     color: black;
     border-radius: 5px;
     border: 2px solid #ecebeb;
@@ -14,5 +18,10 @@
 }
 
 .LikeDislike span{
+    padding-top: 5px;
     font-size: 14px;
+}
+
+.postMessage{
+    padding-top: 5px;
 }
