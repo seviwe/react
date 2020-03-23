@@ -85,6 +85,6 @@ let store = {
     },
 }
 
-console.log(store);
+//console.log(store);
 
 export default store;
