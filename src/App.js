@@ -16,6 +16,7 @@ import NavbarMusic from './components/NavbarMusic/NavbarMusic';
 // import RightBlock from './components/RightBlock/RightBlock';
 
 const App = (props) => {
+	//console.log(props);
 	return (
 		<div className="backColor">
 			<div className='app-wrapper'>
@@ -25,8 +26,8 @@ const App = (props) => {
 				<NavbarFriends state={props.state.friendsPage} />
 				<NavbarMusic />
 				<div className="app-wrapper-content">
-					<Route path='/dialogs'	render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.state.dispatch} />} />
-					<Route path='/profile' 	render={() => <Profile profilePage={props.state.profilePage} dispatch={props.state.dispatch} />} />
+					<Route path='/dialogs'	render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />} />
+					<Route path='/profile' 	render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />} />
 					<Route path='/news' 	render={() => <News />} />
 					<Route path='/music' 	render={() => <Music />} />
 					<Route path='/friends' 	render={() => <Friends state={props.state.friendsPage} />} />

@@ -51,10 +51,13 @@ let store = {
             ]
         },
     },
+    
     getState() {
         return this._state;
     },
+
     _callSubscriber() { },
+
     subscribe(observer) { //наблюдатель
         this._callSubscriber = observer;
     },
@@ -107,6 +110,6 @@ let store = {
     },
 }
 
-console.log(store);
+//console.log(store);
 
 export default store;

@@ -3,7 +3,7 @@ import styles from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 
 const Profile = (props) => {
-	console.log(props);
+	//console.log(props);
 	return (
 		<div>
 			<div>

@@ -9,11 +9,18 @@ const Dialogs = (props) => {
 	let messagesElement = props.dialogsPage.messages.map(m => <Message message={m.message} id={m.id} />)
 
 	let addMessage = () => {
-		props.addMessage(); //вызов функции из state.js для отрисовки сообщения
+		//props.addMessage(); //вызов функции из state.js для отрисовки сообщения
+		props.dispatch({
+			type: 'ADD-MESSAGE',
+		});
 	}
 
 	const onMessageChange = (event) => {
-		props.updateNewMessageText(event.target.value); //вызов функции для занесения в state каждый символ при наборе текста в textarea 
+		//props.updateNewMessageText(event.target.value); //вызов функции для занесения в state каждый символ при наборе текста в textarea 
+		props.dispatch({
+			type: 'UPDATE-NEW-MESSAGE-TEXT',
+			text: event.target.value,
+		});
 	};
 
 	return (
