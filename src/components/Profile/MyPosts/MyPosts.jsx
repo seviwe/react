@@ -7,11 +7,18 @@ const MyPosts = (props) => {
 	let postsElement = props.posts.map(p => <Post message={p.message} countLike={p.countLike} countDislike={p.countDislike} />);
 
 	let addPost = () => {
-		props.addPost(); //вызов функции из state.js для отрисовки поста
+		//props.addPost(); //вызов функции из state.js для отрисовки поста
+		props.dispatch({
+			type: 'ADD-POST',
+		});
 	}
 
 	const onPostChange = (event) => {
-		props.updateNewPostText(event.target.value); //вызов функции для занесения в state каждый символ при наборе текста в textarea 
+		//props.updateNewPostText(event.target.value); //вызов функции для занесения в state каждый символ при наборе текста в textarea
+		props.dispatch({
+			type: 'UPDATE-NEW-POST-TEXT',
+			text: event.target.value,
+		});
 	};
 
 	return (

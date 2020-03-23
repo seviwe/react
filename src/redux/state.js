@@ -55,36 +55,58 @@ let store = {
         return this._state;
     },
     _callSubscriber() { },
-    //функция добавления поста на стену
-    addPost() {
-        let newPost = { id: 5, message: this._state.profilePage.newPostText, countLike: 0, countDislike: 0 };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    //функция обновления текста в textarea
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    //функция добавления поста на стену
-    addMessage() {
-        let newMessage = { id: 4, message: this._state.dialogsPage.newMessageText };
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = '';
-        this._callSubscriber(this._state);
-    },
-    //функция обновления текста в textarea
-    updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessageText = newText;
-        this._callSubscriber(this._state);
-    },
-    //наблюдатель
-    subscribe(observer) {
+    subscribe(observer) { //наблюдатель
         this._callSubscriber = observer;
+    },
+
+    // addPost() {  //функция добавления поста на стену
+    //     let newPost = { id: 5, message: this._state.profilePage.newPostText, countLike: 0, countDislike: 0 };
+    //     this._state.profilePage.posts.push(newPost);
+    //     this._state.profilePage.newPostText = '';
+    //     this._callSubscriber(this._state);
+    // },
+    // updateNewPostText(newText) { //функция обновления текста в textarea
+    //     this._state.profilePage.newPostText = newText;
+    //     this._callSubscriber(this._state);
+    // },
+
+    // addMessage() {  //функция добавления поста на стену
+    //     let newMessage = { id: 4, message: this._state.dialogsPage.newMessageText };
+    //     this._state.dialogsPage.messages.push(newMessage);
+    //     this._state.dialogsPage.newMessageText = '';
+    //     this._callSubscriber(this._state);
+    // },
+    // updateNewMessageText(newText) { //функция обновления текста в textarea
+    //     this._state.dialogsPage.newMessageText = newText;
+    //     this._callSubscriber(this._state);
+    // },
+
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                let newPost = { id: 5, message: this._state.profilePage.newPostText, countLike: 0, countDislike: 0 };
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = '';
+                this._callSubscriber(this._state);
+                break;
+            case 'UPDATE-NEW-POST-TEXT':
+                this._state.profilePage.newPostText = action.text;
+                this._callSubscriber(this._state);
+                break;
+            case 'ADD-MESSAGE':
+                let newMessage = { id: 4, message: this._state.dialogsPage.newMessageText };
+                this._state.dialogsPage.messages.push(newMessage);
+                this._state.dialogsPage.newMessageText = '';
+                this._callSubscriber(this._state);
+                break;
+            case 'UPDATE-NEW-MESSAGE-TEXT':
+                this._state.dialogsPage.newMessageText = action.text;
+                this._callSubscriber(this._state);
+                break;
+        }
     },
 }
 
-//console.log(store);
+console.log(store);
 
 export default store;
