@@ -1,24 +1,18 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Posts/Post';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';
 
 const MyPosts = (props) => {
 
 	let postsElement = props.posts.map(p => <Post message={p.message} countLike={p.countLike} countDislike={p.countDislike} />);
 
 	let addPost = () => {
-		//props.addPost(); //вызов функции из state.js для отрисовки поста
-		props.dispatch({
-			type: 'ADD-POST',
-		});
+		props.dispatch(addPostActionCreator());
 	}
 
 	const onPostChange = (event) => {
-		//props.updateNewPostText(event.target.value); //вызов функции для занесения в state каждый символ при наборе текста в textarea
-		props.dispatch({
-			type: 'UPDATE-NEW-POST-TEXT',
-			text: event.target.value,
-		});
+		props.dispatch(updateNewPostTextActionCreator(event.target.value));
 	};
 
 	return (

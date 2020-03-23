@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state';
 
 const Dialogs = (props) => {
 
@@ -9,18 +10,11 @@ const Dialogs = (props) => {
 	let messagesElement = props.dialogsPage.messages.map(m => <Message message={m.message} id={m.id} />)
 
 	let addMessage = () => {
-		//props.addMessage(); //вызов функции из state.js для отрисовки сообщения
-		props.dispatch({
-			type: 'ADD-MESSAGE',
-		});
+		props.dispatch(addMessageActionCreator());
 	}
 
 	const onMessageChange = (event) => {
-		//props.updateNewMessageText(event.target.value); //вызов функции для занесения в state каждый символ при наборе текста в textarea 
-		props.dispatch({
-			type: 'UPDATE-NEW-MESSAGE-TEXT',
-			text: event.target.value,
-		});
+		props.dispatch(updateNewMessageTextActionCreator(event.target.value));
 	};
 
 	return (

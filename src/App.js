@@ -7,13 +7,12 @@ import Profile from './components/Profile/Profile';
 import NavbarFriends from './components/NavbarFriends/NavbarFriends';
 import Dialogs from './components/Dialogs/Dialogs';
 import Footer from './components/Footer/Footer';
-import { Route } from "react-router-dom"
+import { Route } from "react-router-dom";
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 import Friends from './components/Friends/Friends';
 import NavbarMusic from './components/NavbarMusic/NavbarMusic';
-// import RightBlock from './components/RightBlock/RightBlock';
 
 const App = (props) => {
 	//console.log(props);

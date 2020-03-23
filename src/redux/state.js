@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let avatarImage = {
     _image: {
         img: [
@@ -51,7 +56,7 @@ let store = {
             ]
         },
     },
-    
+
     getState() {
         return this._state;
     },
@@ -62,52 +67,47 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    // addPost() {  //функция добавления поста на стену
-    //     let newPost = { id: 5, message: this._state.profilePage.newPostText, countLike: 0, countDislike: 0 };
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._state.profilePage.newPostText = '';
-    //     this._callSubscriber(this._state);
-    // },
-    // updateNewPostText(newText) { //функция обновления текста в textarea
-    //     this._state.profilePage.newPostText = newText;
-    //     this._callSubscriber(this._state);
-    // },
-
-    // addMessage() {  //функция добавления поста на стену
-    //     let newMessage = { id: 4, message: this._state.dialogsPage.newMessageText };
-    //     this._state.dialogsPage.messages.push(newMessage);
-    //     this._state.dialogsPage.newMessageText = '';
-    //     this._callSubscriber(this._state);
-    // },
-    // updateNewMessageText(newText) { //функция обновления текста в textarea
-    //     this._state.dialogsPage.newMessageText = newText;
-    //     this._callSubscriber(this._state);
-    // },
-
     dispatch(action) {
         switch (action.type) {
-            case 'ADD-POST':
+            case ADD_POST:
                 let newPost = { id: 5, message: this._state.profilePage.newPostText, countLike: 0, countDislike: 0 };
                 this._state.profilePage.posts.push(newPost);
                 this._state.profilePage.newPostText = '';
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE-NEW-POST-TEXT':
+            case UPDATE_NEW_POST_TEXT:
                 this._state.profilePage.newPostText = action.text;
                 this._callSubscriber(this._state);
                 break;
-            case 'ADD-MESSAGE':
+            case ADD_MESSAGE:
                 let newMessage = { id: 4, message: this._state.dialogsPage.newMessageText };
                 this._state.dialogsPage.messages.push(newMessage);
                 this._state.dialogsPage.newMessageText = '';
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE-NEW-MESSAGE-TEXT':
+            case UPDATE_NEW_MESSAGE_TEXT:
                 this._state.dialogsPage.newMessageText = action.text;
                 this._callSubscriber(this._state);
                 break;
         }
     },
+}
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        text: text,
+    }
+}
+
+export const updateNewMessageTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        text: text,
+    }
 }
 
 //console.log(store);
