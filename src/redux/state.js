@@ -1,7 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import { profileReducer } from './profileReducer';
+import { dialogsReducer } from './dialogsReducer';
 
 let avatarImage = {
     _image: {
@@ -68,48 +66,11 @@ let store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST:
-                let newPost = { id: 5, message: this._state.profilePage.newPostText, countLike: 0, countDislike: 0 };
-                this._state.profilePage.posts.push(newPost);
-                this._state.profilePage.newPostText = '';
-                this._callSubscriber(this._state);
-                break;
-            case UPDATE_NEW_POST_TEXT:
-                this._state.profilePage.newPostText = action.text;
-                this._callSubscriber(this._state);
-                break;
-            case ADD_MESSAGE:
-                let newMessage = { id: 4, message: this._state.dialogsPage.newMessageText };
-                this._state.dialogsPage.messages.push(newMessage);
-                this._state.dialogsPage.newMessageText = '';
-                this._callSubscriber(this._state);
-                break;
-            case UPDATE_NEW_MESSAGE_TEXT:
-                this._state.dialogsPage.newMessageText = action.text;
-                this._callSubscriber(this._state);
-                break;
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+        this._callSubscriber(this._state);
     },
 }
-
-export const addPostActionCreator = () => ({ type: ADD_POST })
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        text: text,
-    }
-}
-
-export const updateNewMessageTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        text: text,
-    }
-}
-
-//console.log(store);
 
 export default store;
