@@ -15,7 +15,6 @@ import Friends from './components/Friends/Friends';
 import NavbarMusic from './components/NavbarMusic/NavbarMusic';
 
 const App = (props) => {
-	//console.log(props);
 	return (
 		<div className="backColor">
 			<div className='app-wrapper'>
