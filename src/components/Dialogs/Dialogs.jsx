@@ -2,19 +2,18 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogsReducer';
 
 const Dialogs = (props) => {
 
 	let dialogsElement = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} imgSrc={d.imgSrc} />);
 	let messagesElement = props.dialogsPage.messages.map(m => <Message message={m.message} id={m.id} />)
 
-	let addMessage = () => {
-		props.dispatch(addMessageActionCreator());
+	let onAddMessage = () => {
+		props.addMessage();
 	}
 
 	const onMessageChange = (event) => {
-		props.dispatch(updateNewMessageTextActionCreator(event.target.value));
+		props.updateNewMessageText(event.target.value);
 	};
 
 	return (
@@ -28,7 +27,7 @@ const Dialogs = (props) => {
 				</div>
 				<div className={styles.sendMessage + ' ' + styles.border}>
 					<textarea onChange={onMessageChange} value={props.dialogsPage.newMessageText} />
-					<button onClick={addMessage}>Отправить</button>
+					<button onClick={onAddMessage}>Отправить</button>
 				</div>
 			</div>
 		</div>

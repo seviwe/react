@@ -5,7 +5,7 @@ import BackgroundImage from './components/BackgroundImage/BackgroundImage';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import NavbarFriends from './components/NavbarFriends/NavbarFriends';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Footer from './components/Footer/Footer';
 import { Route } from "react-router-dom";
 import News from './components/News/News';
@@ -24,8 +24,8 @@ const App = (props) => {
 				<NavbarFriends state={props.state.friendsPage} />
 				<NavbarMusic />
 				<div className="app-wrapper-content">
-					<Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />} />
-					<Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />} />
+					<Route path='/dialogs' render={() => <DialogsContainer store={props.store} />} />
+					<Route path='/profile' render={() => <Profile store={props.store} />} />
 					<Route path='/news' render={() => <News />} />
 					<Route path='/music' render={() => <Music />} />
 					<Route path='/friends' render={() => <Friends state={props.state.friendsPage} />} />

@@ -1,18 +1,17 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Posts/Post';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profileReducer';
 
 const MyPosts = (props) => {
 
 	let postsElement = props.posts.map(p => <Post message={p.message} countLike={p.countLike} countDislike={p.countDislike} />);
 
-	let addPost = () => {
-		props.dispatch(addPostActionCreator());
+	let onAddPost = () => {
+		props.addPost();
 	}
 
 	const onPostChange = (event) => {
-		props.dispatch(updateNewPostTextActionCreator(event.target.value));
+		props.updateNewPostText(event.target.value);
 	};
 
 	return (
@@ -20,7 +19,7 @@ const MyPosts = (props) => {
 			Новый пост:
 			<div className={styles.newPost}>
 				<textarea onChange={onPostChange} value={props.newPostText} />
-				<button onClick={addPost}>Добавить</button>
+				<button onClick={onAddPost}>Добавить</button>
 			</div>
 			<div className={styles.posts}>
 				Посты:
