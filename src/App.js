@@ -21,14 +21,14 @@ const App = (props) => {
 				<Header />
 				<BackgroundImage />
 				<Navbar />
-				<NavbarFriends state={props.state.friendsPage} />
+				{/* <NavbarFriends state={props.state.friendsPage} /> */}
 				<NavbarMusic />
 				<div className="app-wrapper-content">
-					<Route path='/dialogs' render={() => <DialogsContainer store={props.store} />} />
-					<Route path='/profile' render={() => <Profile store={props.store} />} />
+					<Route path='/dialogs' render={() => <DialogsContainer />} />
+					<Route path='/profile' render={() => <Profile />} />
 					<Route path='/news' render={() => <News />} />
 					<Route path='/music' render={() => <Music />} />
-					<Route path='/friends' render={() => <Friends state={props.state.friendsPage} />} />
+					{/* <Route path='/friends' render={() => <Friends />} /> */}
 					<Route path='/settings' render={() => <Settings />} />
 				</div>
 				<Footer />
@@ -36,7 +36,5 @@ const App = (props) => {
 		</div>
 	);
 }
-
-/* First commit from SEVA@HOME */
 
 export default App;

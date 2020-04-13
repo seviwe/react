@@ -15,7 +15,7 @@ const Profile = (props) => {
 					Место учебы: МИ ВлГУ им. Столетовых '20
 				</div>
 			</div>
-			<MyPostsContainer store={props.store} />
+			<MyPostsContainer />
 		</div>
 	)
 }
