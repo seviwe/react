@@ -1,29 +1,26 @@
 import React from 'react';
 import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogsReducer';
 import Dialogs from './Dialogs';
-import StoreContext from '../../StoreContext';
+import { connect } from 'react-redux';
 
-const DialogsContainer = (props) => {
-
-	return (
-		<StoreContext.Consumer>
-			{
-				(store) => {
-					let state = store.getState().dialogsPage;
-
-					let addMessage = () => {
-						store.dispatch(addMessageActionCreator());
-					}
-				
-					const onMessageChange = (text) => {
-						store.dispatch(updateNewMessageTextActionCreator(text));
-					};
-
-					return <Dialogs updateNewMessageText={onMessageChange} addMessage={addMessage} dialogsPage={state} />
-				}
-			}
-		</StoreContext.Consumer>
-	)
+let mapStateToProps = (state) => {
+	return {
+		dialogsPage: state.dialogsPage
+	}
 }
+
+let mapDispatchToProps = (dispatch) => {
+	return {
+		updateNewMessageText: (text) => {
+			dispatch(updateNewMessageTextActionCreator(text));
+		},
+		addMessage: () => {
+			dispatch(addMessageActionCreator());
+		}
+	}
+}
+
+//connect()() вызов функции connect, а потом вызов того, что она вернула
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

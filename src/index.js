@@ -6,9 +6,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import {Provider} from './StoreContext';
+import { Provider } from 'react-redux';
 
-let rerender = (state) => {
+let rerender = () => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -23,6 +23,12 @@ store.subscribe(() => {
     let state = store.getState();
     rerender(state);
 });
+
+/*rerender();
+
+store.subscribe(() => {
+    rerender();
+});*/
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
