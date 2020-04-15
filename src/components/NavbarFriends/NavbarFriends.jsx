@@ -4,7 +4,7 @@ import Friend from './Friend/Friend';
 
 const NavbarFriends = (props) => {
 
-	let friendsElement = props.friendsPage.friends.map(f => <Friend name={f.name} id={f.id} imgSrc={f.imgSrc} />);
+	let friendsElement = props.friendsPage.friends.map(f => <Friend name={f.name} key={f.id} id={f.id} imgSrc={f.imgSrc} />);
 
 	return (
 		<div className={styles.navfriends}>

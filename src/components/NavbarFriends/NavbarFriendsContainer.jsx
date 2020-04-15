@@ -1,4 +1,3 @@
-import React from 'react';
 import '../../redux/friendsReducer';
 import NavbarFriends from './NavbarFriends';
 import { connect } from 'react-redux';
