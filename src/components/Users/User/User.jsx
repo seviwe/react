@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Friend.module.css';
+import styles from './User.module.css';
 
-const Friend = (props) => {
+const User = (props) => {
 	return (
 		<div className={styles.item}>
 			<div>
@@ -15,9 +15,16 @@ const Friend = (props) => {
 				<div className={styles.textMin}>
 					{props.country + ', ' + props.city}
 				</div>
+				<div>
+					{
+						props.followed
+							? <button onClick={() => { props.unfollow(props.id) }}>Отписаться</button>
+							: <button onClick={() => { props.follow(props.id) }}>Подписаться</button>
+					}
+				</div>
 			</div>
 		</div>
 	)
 }
 
-export default Friend;
+export default User;

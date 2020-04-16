@@ -8,22 +8,26 @@ const Navbar = () => {
 	return (
 		<nav className={styles.nav}>
 			<div className={styles.item}>
-				<NavLink to="/profile" activeClassName={styles.activeLink}>Profile</NavLink>
+				<NavLink to="/profile" activeClassName={styles.activeLink}>Профиль</NavLink>
 			</div>
 			<div className={styles.item}>
-				<NavLink to="/dialogs" activeClassName={styles.activeLink}>Dialogs</NavLink>
+				<NavLink to="/dialogs" activeClassName={styles.activeLink}>Диалоги</NavLink>
 			</div>
 			<div className={styles.item}>
-				<NavLink to="/friends" activeClassName={styles.activeLink}>Friends</NavLink>
+				<NavLink to="/friends" activeClassName={styles.activeLink}>Друзья</NavLink>
 			</div>
 			<div className={styles.item}>
-				<NavLink to="/news" activeClassName={styles.activeLink}>News</NavLink>
+				<NavLink to="/news" activeClassName={styles.activeLink}>Лента</NavLink>
 			</div>
 			<div className={styles.item}>
-				<NavLink to="/music" activeClassName={styles.activeLink}>Music</NavLink>
+				<NavLink to="/music" activeClassName={styles.activeLink}>Музыка</NavLink>
 			</div>
 			<div className={styles.item}>
-				<NavLink to="/settings" activeClassName={styles.activeLink}>Settings</NavLink>
+				<NavLink to="/users" activeClassName={styles.activeLink}>Пользователи</NavLink>
+			</div>
+			<br />
+			<div className={styles.item}>
+				<NavLink to="/settings" activeClassName={styles.activeLink}>Настройки</NavLink>
 			</div>
 		</nav>
 	)

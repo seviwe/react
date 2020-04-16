@@ -4,12 +4,12 @@ import Friend from './Friend/Friend';
 
 const Friends = (props) => {
 
-	let friendsElement = props.friendsPage.friends.map(f => <Friend name={f.name} surname={f.surname} id={f.id} imgSrc={f.imgSrc} />);
+	let friendsElement = props.friendsPage.map(f => <Friend name={f.name} surname={f.surname} id={f.id} imgSrc={f.imgSrc} status={f.status} country={f.location.country} city={f.location.city} />);
 
 	return (
 		<div>
 			<div className={styles.panel}>
-				Здесь что-то будет...
+				Поиск друзей...
 			</div>
 			<div className={styles.listFriends}>
 				{friendsElement}
