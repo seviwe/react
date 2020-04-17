@@ -18,7 +18,7 @@
 
 .messages {
     display: grid;
-    grid-template-rows: 9fr 2fr;
+    grid-template-rows: 12fr 3fr;
 }
 
 .sendMessage{
@@ -27,8 +27,8 @@
     margin-top: 10px;
 }
 
-textarea{
-    width: 99%;
+.textArea{
+    width: 100%;
 }
 
 .border {

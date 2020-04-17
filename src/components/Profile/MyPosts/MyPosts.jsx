@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Posts/Post';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+import TextField from '@material-ui/core/TextField';
 
 const MyPosts = (props) => {
 
@@ -16,13 +19,19 @@ const MyPosts = (props) => {
 
 	return (
 		<div className={styles.myposts}>
-			Новый пост:
 			<div className={styles.newPost}>
-				<textarea onChange={onPostChange} value={props.newPostText} />
-				<button onClick={onAddPost}>Добавить</button>
+				<TextField
+					id="outlined-multiline-static"
+					label="Введите пост..."
+					multiline
+					variant="outlined"
+					onChange={onPostChange}
+					value={props.newPostText}
+					className={styles.textArea}
+				/>
+				<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddPost}>Добавить</Button>
 			</div>
 			<div className={styles.posts}>
-				Посты:
 				{postsElement}
 			</div>
 		</div>

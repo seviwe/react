@@ -2,6 +2,10 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Icon from '@material-ui/core/Icon';
+import TextField from '@material-ui/core/TextField';
 
 const Dialogs = (props) => {
 
@@ -26,8 +30,16 @@ const Dialogs = (props) => {
 					{messagesElement}
 				</div>
 				<div className={styles.sendMessage + ' ' + styles.border}>
-					<textarea onChange={onMessageChange} value={props.dialogsPage.newMessageText} />
-					<button onClick={onAddMessage}>Отправить</button>
+					<TextField
+						id="outlined-multiline-static"
+						label="Введите сообщение..."
+						multiline
+						variant="outlined"
+						onChange={onMessageChange} 
+						value={props.dialogsPage.newMessageText}
+						className={styles.textArea}
+					/>
+					<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddMessage}>Отправить</Button>
 				</div>
 			</div>
 		</div>
