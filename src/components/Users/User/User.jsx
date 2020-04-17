@@ -5,7 +5,7 @@ import noneAvatar from '../../../assets/img/noneAvatar.png';
 const User = (props) => {
 	return (
 		<div className={styles.item}>
-			<div>
+			<div className={styles.imgDiv}>
 				<img src={props.imgSrc != null ? props.imgSrc : noneAvatar} />
 			</div>
 			<div className={styles.text}>
@@ -16,7 +16,6 @@ const User = (props) => {
 				</div>
 				<div className={styles.textMin}>
 					{/* {props.country + ', ' + props.city} */}
-					Страна, город
 				</div>
 				<div>
 					{

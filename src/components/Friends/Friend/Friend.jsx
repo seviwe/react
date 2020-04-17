@@ -4,7 +4,7 @@ import styles from './Friend.module.css';
 const Friend = (props) => {
 	return (
 		<div className={styles.item}>
-			<div>
+			<div className={styles.imgDiv}>
 				<img src={props.imgSrc} />
 			</div>
 			<div className={styles.text}>

@@ -5,11 +5,13 @@ import * as axios from 'axios';
 
 const Users = (props) => {
 
-	if (props.usersPage.users.length === 0) {
-		//запрос с сервера пользователей
-		axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-			props.setUsers(response.data.items);
-		});
+	let getUsers = () => {
+		if (props.usersPage.users.length === 0) {
+			//запрос с сервера пользователей
+			axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+				props.setUsers(response.data.items);
+			});
+		}
 	}
 
 	//было раньше до подключения к серверу
@@ -22,6 +24,7 @@ const Users = (props) => {
 			<div className={styles.panel}>
 				Поиск пользователей...
 			</div>
+			<button onClick={getUsers}>Получить пользователей</button>
 			<div className={styles.listUsers}>
 				{usersElement}
 			</div>
