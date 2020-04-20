@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './User.module.css';
 import noneAvatar from '../../../assets/img/noneAvatar.png';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 
 const User = (props) => {
 	return (
@@ -20,8 +22,8 @@ const User = (props) => {
 				<div>
 					{
 						props.followed
-							? <button onClick={() => { props.unfollow(props.id) }}>Отписаться</button>
-							: <button onClick={() => { props.follow(props.id) }}>Подписаться</button>
+							? <Button variant="contained" size="small" color="secondary" style={{ marginTop: '10px' }} endIcon={<Icon>cancel</Icon>} onClick={() => { props.unfollow(props.id) }}>Отписаться</Button>
+							: <Button variant="contained" size="small" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>add_circle</Icon>} onClick={() => { props.follow(props.id) }}>Подписаться</Button>
 					}
 				</div>
 			</div>
