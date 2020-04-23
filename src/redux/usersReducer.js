@@ -3,6 +3,8 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURR_PAGE = "SET_CURR_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
 //список пользователей соц сети и вся инфа о них. Берется из сервера
 let initialState = {
@@ -15,7 +17,10 @@ let initialState = {
         // { id: 6, followed: false, imgSrc: avatarImage.getAvatarImage(0), name: 'Кирилл', surname: 'Иванов', status: '', location: { country: 'Украина', city: 'Киев' } },
         // { id: 7, followed: false, imgSrc: avatarImage.getAvatarImage(1), name: 'Дарья', surname: 'Казанская', status: '', location: { country: 'Россия', city: 'Ковров' } },
         // { id: 8, followed: false, imgSrc: avatarImage.getAvatarImage(0), name: 'Пегас', surname: 'Естивьев', status: '', location: { country: 'Беларусь', city: 'Могилев' } },
-    ]
+    ],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -43,7 +48,13 @@ export const usersReducer = (state = initialState, action) => {
             };
         }
         case SET_USERS: {
-            return { ...state, users: [...state.users, ...action.users] }
+            return { ...state, users: action.users }
+        }
+        case SET_CURR_PAGE: {
+            return { ...state, currentPage: action.currentPage }
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return { ...state, totalUsersCount: action.count }
         }
         default:
             return state;
@@ -56,5 +67,9 @@ export const followAC = (userId) => ({ type: FOLLOW, userId });
 export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
 
 export const setUsersAC = (users) => ({ type: SET_USERS, users });
+
+export const setCurrentPageAC = (currentPage) => ({ type: SET_CURR_PAGE, currentPage });
+
+export const setTotalUsersCountAC = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
 
 export default usersReducer;
