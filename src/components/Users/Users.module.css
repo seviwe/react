@@ -6,11 +6,15 @@
     margin-bottom: 20px;
 }
 
-.paginationCenter{
+.paginationCenter {
     padding-top: 20px;
     text-align: center;
 }
 
-.selectedPage{
+.selectedPage {
     font-weight: bold;
+}
+
+.paginationCenter span {
+    cursor: pointer
 }
