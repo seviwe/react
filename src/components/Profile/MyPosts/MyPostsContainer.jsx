@@ -1,6 +1,6 @@
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profileReducer';
+import { addPost, updateNewPostText } from '../../../redux/profileReducer';
 
 let mapStateToProps = (state) => {
 	return {
@@ -9,18 +9,7 @@ let mapStateToProps = (state) => {
 	}
 }
 
-let mapDispatchToProps = (dispatch) => {
-	return {
-		updateNewPostText: (text) => {
-			dispatch(updateNewPostTextActionCreator(text));
-		},
-		addPost: () => {
-			dispatch(addPostActionCreator());
-		}
-	}
-}
-
 //connect()() вызов функции connect, а потом вызов того, что она вернула
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, { updateNewPostText, addPost })(MyPosts);
 
 export default MyPostsContainer;
