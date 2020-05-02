@@ -3,12 +3,15 @@ import styles from './User.module.css';
 import noneAvatar from '../../../assets/img/noneAvatar.png';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
+import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
 	return (
 		<div className={styles.item}>
 			<div className={styles.imgDiv}>
-				<img src={props.imgSrc != null ? props.imgSrc : noneAvatar} />
+				<NavLink to={"/profile/" + props.id}>
+					<img src={props.imgSrc != null ? props.imgSrc : noneAvatar} />
+				</NavLink>
 			</div>
 			<div className={styles.text}>
 				{/* {props.name + ' ' + props.surname} */}
