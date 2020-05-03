@@ -1,7 +1,18 @@
-.messages{
+.messages {
     padding: 10px;
 }
 
-.message{
-font-size: 15px;
+.message {
+    font-size: 15px;
+    color: #797979;
+}
+
+.border {
+    border-radius: 5px;
+    border: 2px solid #ecebeb;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+    padding: 5px;
+    color: #797979;
+    width: fit-content;
 }

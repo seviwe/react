@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader.jsx';
 import AvatarImage from './AvatarImage/AvatarImage';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -13,6 +16,7 @@ const ProfileInfo = (props) => {
             <div className={styles.left}>
                 <AvatarImage />
             </div>
+            <Button className={styles.buttonUpd} variant="contained" color="default" size="small" startIcon={<CloudUploadIcon />}>Изменить фото</Button>
             <div className={styles.right}>
                 <div className={styles.text + " " + styles.border}>
                     Vsevolod Aleynikov
@@ -24,6 +28,10 @@ const ProfileInfo = (props) => {
                     День рождения: 17 мая 1997 г. <br />
 					Город: Муром <br />
 					Место учебы: МИ ВлГУ им. Столетовых '20 <br />
+                    тест <br />
+                    тест <br />
+                    тест <br />
+                    тест <br />
                     тест <br />
                     тест
 			    </div>
