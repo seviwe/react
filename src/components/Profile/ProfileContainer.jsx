@@ -20,8 +20,8 @@ class ProfileContainer extends React.Component {
     }
 }
 
-let matStateToProps = (state) => ({
+let mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 });
 
-export default connect(matStateToProps, { setUserProfile })(ProfileContainer);
+export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);

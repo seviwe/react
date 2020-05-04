@@ -3,7 +3,6 @@ import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader.jsx';
 import AvatarImage from './AvatarImage/AvatarImage';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const ProfileInfo = (props) => {
@@ -14,7 +13,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={styles.profileInfo}>
             <div className={styles.left}>
-                <AvatarImage />
+                <AvatarImage imgSrc={props.profile.photos.large} />
             </div>
             <Button className={styles.buttonUpd} variant="contained" color="default" size="small" startIcon={<CloudUploadIcon />}>Изменить фото</Button>
             <div className={styles.right}>

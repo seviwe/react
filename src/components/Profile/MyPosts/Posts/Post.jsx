@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from './Post.module.css';
+import Badge from '@material-ui/core/Badge';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
 const Post = (props) => {
 	return (
@@ -11,11 +14,21 @@ const Post = (props) => {
 				<div className={styles.postMessage}>
 					{props.message}
 				</div>
+				<hr />
 				<div className={styles.LikeDislike}>
-					<span>Like ({props.countLike}) </span>
-					<span>Dislike ({props.countDislike})</span>
+					<span className={styles.like}>
+						<Badge badgeContent={props.countLike} color="primary" anchorOrigin={{ vertical: 'bottom', horizontal: 'right', }}>
+							<ThumbUpAltIcon fontSize="small" />
+						</Badge>
+					</span>
+					<span className={styles.dislike}>
+						<Badge badgeContent={props.countDislike} color="error" anchorOrigin={{ vertical: 'bottom', horizontal: 'right', }}>
+							<ThumbDownIcon fontSize="small" />
+						</Badge>
+					</span>
 				</div>
 			</div>
+			<br />
 		</div>
 	)
 }
