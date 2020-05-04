@@ -11,9 +11,7 @@ const Friends = (props) => {
 			<div className={styles.panel}>
 				Поиск друзей...
 			</div>
-			<div className={styles.listFriends}>
-				{friendsElement}
-			</div>
+			{friendsElement}
 		</div>
 	)
 }

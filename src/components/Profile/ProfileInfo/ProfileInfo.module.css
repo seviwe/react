@@ -1,6 +1,7 @@
 .left {
     grid-area: left;
-    border: 1px solid #ede9e9;
+    background: #fdfdfd;
+    border: 1px solid #fdfdfd;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
@@ -59,7 +60,8 @@
 
 .border {
     border-radius: 5px;
-    border: 2px solid #ecebeb;
+    background: #fdfdfd;
+    border: 1px solid #fdfdfd;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     margin-bottom: 8px;
     padding: 5px;
