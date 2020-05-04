@@ -1,20 +1,24 @@
-.nav{
-   grid-area: navbar;
-   /* background-color: green; */
-   background: #fdfdfd;
-   border: 1px solid #ede9e9;
-   border-radius: 5px;
-   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-   height: 200px;
-   padding: 15px;
- } 
+.nav {
+    grid-area: navbar;
+    /* background-color: green; */
+    background: #fdfdfd;
+    border: 1px solid #ede9e9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    height: 250px;
+    padding: 15px;
+}
 
- .item a{
-   color: #797979;
-   text-decoration: none;
-   font-size: 20px;
- }
+.item {
+    padding-bottom: 1px;
+}
 
- .item .activeLink{
-  color: orange;
+.item a {
+    color: #797979;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.item .activeLink {
+    color: orange;
 }
