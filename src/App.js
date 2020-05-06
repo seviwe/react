@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 // import BackgroundImage from './components/BackgroundImage/BackgroundImage';
 import Navbar from './components/Navbar/Navbar';
 import NavbarFriendsContainer from './components/NavbarFriends/NavbarFriendsContainer';
@@ -19,7 +19,7 @@ const App = (props) => {
 	return (
 		<div className="backColor">
 			<div className='app-wrapper'>
-				<Header />
+				<HeaderContainer />
 				{/* <BackgroundImage /> */}
 				<Navbar />
 				<NavbarFriendsContainer />

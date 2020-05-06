@@ -1,5 +1,5 @@
-import { profileReducer } from './profileReducer';
-import { dialogsReducer } from './dialogsReducer';
+import { profileReducer } from '../src/redux/profileReducer';
+import { dialogsReducer } from '../src/redux/dialogsReducer';
 
 let avatarImage = {
     _image: {
