@@ -10,7 +10,7 @@ class ProfileContainer extends React.Component {
         let userId = this.props.match.params.userId;
 
         if (!userId) {
-            userId = 2;
+            userId = 7836;
         }
 
         //запрос с сервера профиля пользователя

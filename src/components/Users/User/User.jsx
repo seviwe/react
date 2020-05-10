@@ -4,6 +4,7 @@ import noneAvatar from '../../../assets/img/noneAvatar.png';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { NavLink } from 'react-router-dom';
+import * as axios from 'axios';
 
 const User = (props) => {
 	return (
@@ -25,8 +26,34 @@ const User = (props) => {
 				<div>
 					{
 						props.followed
-							? <Button variant="contained" size="small" color="secondary" style={{ marginTop: '10px' }} endIcon={<Icon>cancel</Icon>} onClick={() => { props.unfollow(props.id) }}>Отписаться</Button>
-							: <Button variant="contained" size="small" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>add_circle</Icon>} onClick={() => { props.follow(props.id) }}>Подписаться</Button>
+							? <Button variant="contained" size="small" color="secondary" style={{ marginTop: '10px' }} endIcon={<Icon>cancel</Icon>} onClick={() => {
+								axios.delete("https://social-network.samuraijs.com/api/1.0/follow/" + props.id, {
+									withCredentials: true,
+									headers: {
+										"API-KEY": "b19640f8-e1c6-4c7e-b9f4-4fc65e7a380e"
+									}
+								})
+									.then(response => {
+										if (response.data.resultCode === 0) {
+											props.unfollow(props.id)
+										}
+									});
+							}
+							}>Отписаться</Button>
+							: <Button variant="contained" size="small" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>add_circle</Icon>} onClick={() => {
+								axios.post("https://social-network.samuraijs.com/api/1.0/follow/" + props.id, {}, {
+									withCredentials: true,
+									headers: {
+										"API-KEY": "b19640f8-e1c6-4c7e-b9f4-4fc65e7a380e"
+									}
+								})
+									.then(response => {
+										if (response.data.resultCode === 0) {
+											props.follow(props.id)
+										}
+									});
+							}
+							}>Подписаться</Button>
 					}
 				</div>
 			</div>
