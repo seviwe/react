@@ -1,6 +1,5 @@
 .nav {
     grid-area: navbar;
-    /* background-color: green; */
     background: #fdfdfd;
     border: 1px solid #ede9e9;
     border-radius: 5px;

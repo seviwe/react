@@ -1,5 +1,4 @@
 import * as axios from 'axios';
-//import { follow, unfollow } from './../redux/usersReducer';
 
 //Data Access Layer
 
@@ -20,11 +19,27 @@ export const usersAPI = {
             });
     },
     //функция отписки onfollow
-    unfollow(idUser) {
-        return instance.delete("1.0/follow/" + idUser);
+    unfollowUser(idUser) {
+        return instance.delete("1.0/follow/" + idUser)
+            .then(response => {
+                return response.data;
+            });
     },
-    //функция подписки onfollow
-    follow(idUser) {
-        return instance.post("1.0/follow/" + idUser);
+    //функция подписки follow
+    followUser(idUser) {
+        return instance.post("1.0/follow/" + idUser)
+            .then(response => {
+                return response.data;
+            });
     },
-}
+};
+
+export const profileAPI = {
+    //функция запроса с сервера профиля пользователя
+    getProfileUser(idUser) {
+        return instance.get("1.0/profile/" + idUser)
+            .then(response => {
+                return response.data;
+            });
+    },
+};

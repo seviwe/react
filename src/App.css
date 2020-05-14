@@ -40,7 +40,7 @@ p {
 		".       navfr   	cont          ." 
 		".       navmusic   cont          ." 
 		"footer  footer  	footer   footer";
-		grid-template-rows: 50px 282px 232px auto 50px;
+		grid-template-rows: auto 296px 232px auto 50px;
 		grid-template-columns: 2fr 1.3fr 5fr 2fr;
 		grid-gap: 10px;
 	}
