@@ -26,19 +26,23 @@ const User = (props) => {
 				<div>
 					{
 						props.followed
-							? <Button variant="contained" size="small" color="secondary" style={{ marginTop: '10px' }} endIcon={<Icon>cancel</Icon>} onClick={() => {
+							? <Button disabled={props.followingInProgress.some(id => id === props.id)} variant="contained" size="small" color="secondary" style={{ marginTop: '10px' }} endIcon={<Icon>cancel</Icon>} onClick={() => {
+								props.toggleIsFollowInProgress(true, props.id);
 								usersAPI.unfollowUser(props.id).then(data => {
 									if (data.resultCode === 0) {
 										props.unfollow(props.id)
 									}
+									props.toggleIsFollowInProgress(false, props.id);
 								});
 							}
 							}>Отписаться</Button>
-							: <Button variant="contained" size="small" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>add_circle</Icon>} onClick={() => {
+							: <Button disabled={props.followingInProgress.some(id => id === props.id)} variant="contained" size="small" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>add_circle</Icon>} onClick={() => {
+								props.toggleIsFollowInProgress(true, props.id);
 								usersAPI.followUser(props.id).then(data => {
 									if (data.resultCode === 0) {
 										props.follow(props.id)
 									}
+									props.toggleIsFollowInProgress(false, props.id);
 								});
 							}
 							}>Подписаться</Button>

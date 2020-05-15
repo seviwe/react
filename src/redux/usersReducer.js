@@ -5,6 +5,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURR_PAGE = "SET_CURR_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 //список пользователей соц сети и вся инфа о них. Берется из сервера
 let initialState = {
@@ -21,7 +22,8 @@ let initialState = {
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: [],
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -60,6 +62,15 @@ export const usersReducer = (state = initialState, action) => {
         case TOGGLE_IS_FETCHING: {
             return { ...state, isFetching: action.isFetching }
         }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+
+            }
+        }
         default:
             return state;
     }
@@ -67,15 +78,11 @@ export const usersReducer = (state = initialState, action) => {
 
 //actionCreators
 export const follow = (userId) => ({ type: FOLLOW, userId });
-
 export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
-
 export const setUsers = (users) => ({ type: SET_USERS, users });
-
 export const setCurrentPage = (currentPage) => ({ type: SET_CURR_PAGE, currentPage });
-
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
-
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+export const toggleIsFollowInProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
 export default usersReducer;
