@@ -14,7 +14,7 @@ import FriendsContainer from './components/Friends/FriendsContainer';
 import NavbarMusic from './components/NavbarMusic/NavbarMusic';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
-//Тестовый комит с ноута 14.07.20
+
 const App = (props) => {
 	return (
 		<div className="backColor">
