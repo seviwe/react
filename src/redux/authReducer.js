@@ -31,7 +31,7 @@ export const authReducer = (state = initialState, action) => {
 //actionCreators
 export const setAuthUserData = (userId, email, login) => ({ type: SET_USERS_DATA, data: { userId, email, login } });
 //export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
-
+//react-thunk
 export const getAuthUserData = () => (dispatch) => {
     authAPI.getMe().then(response => {
         if (response.data.resultCode === 0) { //если залогинены

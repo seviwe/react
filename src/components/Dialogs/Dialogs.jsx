@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
+import { Redirect } from 'react-router-dom';
 
 const Dialogs = (props) => {
 
@@ -19,7 +20,9 @@ const Dialogs = (props) => {
 	const onMessageChange = (event) => {
 		props.updateNewMessageText(event.target.value);
 	};
-
+    //редирект на форму логина
+	if (!props.isAuth) return <Redirect to={"/login"}/>;
+	
 	return (
 		<div className={styles.dialogs}>
 			<div className={styles.dialogsItems + " " + styles.border}>
@@ -35,11 +38,11 @@ const Dialogs = (props) => {
 						label="Введите сообщение..."
 						multiline
 						variant="outlined"
-						onChange={onMessageChange} 
+						onChange={onMessageChange}
 						value={props.dialogsPage.newMessageText}
 						className={styles.textArea}
 					/>
-					<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddMessage}>Отправить</Button>
+					<Button variant="contained" size="medium" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>send</Icon>} onClick={onAddMessage}>Отправить</Button>
 				</div>
 			</div>
 		</div>
