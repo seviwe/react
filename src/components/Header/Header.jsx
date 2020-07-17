@@ -179,14 +179,14 @@ export default function Header(props) {
 		<div className={classes.grow + " " + styles.header}>
 			<AppBar position="static">
 				<Toolbar>
-					<IconButton
+					{/* <IconButton
 						edge="start"
 						className={classes.menuButton}
 						color="inherit"
 						aria-label="open drawer"
 					>
 						<MenuIcon />
-					</IconButton>
+					</IconButton> */}
 					<Typography className={classes.title} variant="h6" noWrap>
 						<a href="http://localhost:3000/profile" className={styles.logoText}>AntiVK</a>
 					</Typography>

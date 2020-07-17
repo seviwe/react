@@ -11,6 +11,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -44,6 +45,9 @@ const ProfileInfo = (props) => {
             <div className={styles.right}>
                 <div className={styles.text + " " + styles.border}>
                     {props.profile.fullName}
+                </div>
+                <div className={styles.text + " " + styles.border}>
+                    <ProfileStatus status={"Hello World!"}/>
                 </div>
                 {aboutMe}
                 <div className className={styles.border}>
