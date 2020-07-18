@@ -51,10 +51,10 @@ const ProfileInfo = (props) => {
                 </div>
                 {aboutMe}
                 <div className className={styles.border}>
-                    День рождения: 17 мая 1997 г. <br />
+                    {/* День рождения: 17 мая 1997 г. <br />
                     Город: Муром <br />
 					Место учебы: МИ ВлГУ им. Столетовых '20 <br />
-                    <hr />
+                    <hr /> */}
                     Контактная информация: <br />
                     <a href={props.profile.contacts.facebook} target="_blank"><FacebookIcon fontSize="default" color="primary" /></a>
                     <a href={props.profile.contacts.website} target="_blank"><LanguageIcon fontSize="default" color="primary" /></a>
