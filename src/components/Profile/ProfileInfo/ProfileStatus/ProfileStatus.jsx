@@ -2,12 +2,13 @@ import React from 'react';
 import styles from './ProfileStatus.module.css';
 
 class ProfileStatus extends React.Component {
+
     state = {
         editMode: false,
-        title: ""
+        status: this.props.status
     }
 
-    activateEditMode() {
+    activateEditMode = () => {
         this.setState({
             editMode: true
         });
@@ -15,9 +16,16 @@ class ProfileStatus extends React.Component {
         //this.forceUpdate(); //лучше не юзать
     }
 
-    deactivateEditMode() {
+    deactivateEditMode = () => {
         this.setState({
             editMode: false
+        });
+        this.props.updateUserStatus(this.state.status);
+    }
+
+    onStatusChange = (e) => {
+        this.setState({
+            status: e.target.value
         });
     }
 
@@ -25,10 +33,10 @@ class ProfileStatus extends React.Component {
         return (
             <div>
                 {!this.state.editMode &&
-                    <span onClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
+                    <span onClick={this.activateEditMode}>{this.props.status || "No status..."}</span>
                 }
                 {this.state.editMode &&
-                    <input autoFocus={true} onBlur={this.deactivateEditMode.bind(this)} value={this.props.status} />
+                    <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status} />
                 }
             </div>
         )

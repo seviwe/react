@@ -41,11 +41,22 @@ export const profileAPI = {
                 return response.data;
             });
     },
+    //функция запроса с сервера статуса пользователя
+    getStatusUser(idUser) {
+        return instance.get("profile/status/" + idUser)
+            .then(response => {
+                return response.data;
+            });
+    },
+    //функция обновления статуса пользователя
+    updateStatusUser(status) {
+        return instance.put("profile/status", { status: status });
+    },
 };
 
 export const authAPI = {
     //функция запроса логина с сервера
-    getMe(){
+    getMe() {
         return instance.get("auth/me");
     }
 };
