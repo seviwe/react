@@ -58,5 +58,12 @@ export const authAPI = {
     //функция запроса логина с сервера
     getMe() {
         return instance.get("auth/me");
-    }
+    },
+    //функция авторизации пользователя
+    authorizationUser(email, password) {
+        return instance.post("auth/login", { email: email, password: password })
+            .then(response => {
+                return response.data;
+            });
+    },
 };

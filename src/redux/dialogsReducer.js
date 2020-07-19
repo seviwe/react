@@ -1,7 +1,6 @@
 import avatarImage from './imgReducer';
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     dialogs: [
@@ -17,7 +16,6 @@ let initialState = {
         { id: 2, message: 'Как дела?' },
         { id: 3, message: 'Чем занимаешься?' },
     ],
-    newMessageText: ''
 };
 
 export const dialogsReducer = (state = initialState, action) => {
@@ -26,15 +24,7 @@ export const dialogsReducer = (state = initialState, action) => {
             //глубокое копирование объекта
             return {
                 ...state,
-                newMessageText: '',
-                messages: [...state.messages, { id: 4, message: state.newMessageText }]
-            };
-        }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            //поверхностное копирование объекта
-            return {
-                ...state,
-                newMessageText: action.text
+                messages: [...state.messages, { id: 4, message: action.newMessageBody }]
             };
         }
         default:
@@ -42,13 +32,6 @@ export const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessage = () => ({ type: ADD_MESSAGE })
-
-export const updateNewMessageText = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        text: text,
-    }
-}
+export const addMessage = (newMessageBody) => ({ type: ADD_MESSAGE, newMessageBody })
 
 export default dialogsReducer;

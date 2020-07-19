@@ -1,5 +1,4 @@
 import { usersAPI } from './../api/api';
-//import avatarImage from './imgReducer';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -11,16 +10,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 //список пользователей соц сети и вся инфа о них. Берется из сервера
 let initialState = {
-    users: [
-        // { id: 1, followed: true, imgSrc: avatarImage.getAvatarImage(4), name: 'Петр', surname: 'Измайлов', status: 'Я босс', location: { country: 'Россия', city: 'Муром' } },
-        // { id: 2, followed: false, imgSrc: avatarImage.getAvatarImage(3), name: 'Дмитрий', surname: 'Иванов', status: 'Волк воет, а собака лает', location: { country: 'Россия', city: 'Владимир' } },
-        // { id: 3, followed: false, imgSrc: avatarImage.getAvatarImage(1), name: 'Светлана', surname: 'Ясная', status: 'болею :((', location: { country: 'Россия', city: 'Муром' } },
-        // { id: 4, followed: false, imgSrc: avatarImage.getAvatarImage(1), name: 'Елена', surname: 'Гребникова', status: '', location: { country: 'Россия', city: 'Москва' } },
-        // { id: 5, followed: false, imgSrc: avatarImage.getAvatarImage(2), name: 'Женя', surname: 'Казанский', status: 'Не бойся перемен', location: { country: 'Россия', city: 'Выкса' } },
-        // { id: 6, followed: false, imgSrc: avatarImage.getAvatarImage(0), name: 'Кирилл', surname: 'Иванов', status: '', location: { country: 'Украина', city: 'Киев' } },
-        // { id: 7, followed: false, imgSrc: avatarImage.getAvatarImage(1), name: 'Дарья', surname: 'Казанская', status: '', location: { country: 'Россия', city: 'Ковров' } },
-        // { id: 8, followed: false, imgSrc: avatarImage.getAvatarImage(0), name: 'Пегас', surname: 'Естивьев', status: '', location: { country: 'Беларусь', city: 'Могилев' } },
-    ],
+    users: [],
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
