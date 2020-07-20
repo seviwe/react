@@ -131,6 +131,7 @@ export default function Header(props) {
 		>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/profile" className={styles.noneHref}>Профиль</a></MenuItem>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/settings" className={styles.noneHref}>Настройки</a></MenuItem>
+			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/logout" className={styles.noneHref}>Выйти</a></MenuItem>
 		</Menu>
 	);
 
@@ -247,7 +248,7 @@ export default function Header(props) {
 								</div>
 							</div>
 							: <NavLink to={'/login'}>
-								<Button color="inherit">Login</Button>
+								<Button color="inherit">Авторизация</Button>
 							</NavLink>
 						}
 					</div>

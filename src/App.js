@@ -14,7 +14,8 @@ import FriendsContainer from './components/Friends/FriendsContainer';
 import NavbarMusic from './components/NavbarMusic/NavbarMusic';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import Login from './components/Login/Login';
+//import Login from './components/Login/Login';
+import LoginContainer from './components/Login/LoginContainer';
 
 const App = (props) => {
 	return (
@@ -33,7 +34,7 @@ const App = (props) => {
 					<Route path='/friends' render={() => <FriendsContainer />} />
 					<Route path='/users' render={() => <UsersContainer />} />
 					<Route path='/settings' render={() => <Settings />} />
-					<Route path='/login' render={() => <Login />} />
+					<Route path='/login' render={() => <LoginContainer />} />
 				</div>
 				<Footer />
 			</div>

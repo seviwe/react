@@ -27,8 +27,8 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.data,
                 isAuth: true,
-                login: action.login,
-                password: action.password
+                //login: action.login,
+                //password: action.password
             };
         }
         // case TOGGLE_IS_FETCHING: {

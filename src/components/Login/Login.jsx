@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from './Login.module.css';
 import { reduxForm, Field } from 'redux-form';
+import { required, maxLengthCreator } from '../../utils/validators/validators';
+import { FormControl } from '../../components/common/FormsControls/FormsControls';
+
+const maxLength = maxLengthCreator(30);
 
 const Login = (props) => {
 	let AuthNewUser = (values) => {
-		//props.authUser(values.login, values.password);
+		props.authUser(values.login, values.password);
 	}
-	console.log(props);
+
 	return (
 		<div>
 			<h1>Авторизация</h1>
@@ -19,13 +23,13 @@ const LoginForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
 			<div>
-				<Field placeholder={"Логин"} name={"login"} component={"input"} />
+				<Field placeholder={"Логин"} name={"login"} component={FormControl} controlType="input" validate={[required, maxLength]} />
 			</div>
 			<div>
-				<Field placeholder={"Пароль"} name={"password"} component={"input"} />
+				<Field placeholder={"Пароль"} name={"password"} component={FormControl} controlType="input" validate={[required, maxLength]} />
 			</div>
 			<div>
-				<Field type={"checkbox"} name={"rememberMe"} component={"input"} /> Запомнить меня
+				<Field type={"checkbox"} name={"rememberMe"} component={"checkbox"} /> Запомнить меня
 			</div>
 			<div>
 				<button>Войти</button>
