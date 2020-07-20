@@ -16,9 +16,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import styles from './Header.module.css';
 import Button from '@material-ui/core/Button';
-import { NavLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange } from '@material-ui/core/colors';
+import { Icon } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -118,6 +118,11 @@ export default function Header(props) {
 		setMobileMoreAnchorEl(event.currentTarget);
 	};
 
+	//Выйти из системы
+	const onLogout = () => {
+		props.logout();
+	}
+
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
 		<Menu
@@ -131,7 +136,7 @@ export default function Header(props) {
 		>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/profile" className={styles.noneHref}>Профиль</a></MenuItem>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/settings" className={styles.noneHref}>Настройки</a></MenuItem>
-			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/logout" className={styles.noneHref}>Выйти</a></MenuItem>
+			<MenuItem onClick={handleMenuClose, onLogout()}><a href="" className={styles.noneHref}>Выйти</a></MenuItem>
 		</Menu>
 	);
 
@@ -247,9 +252,7 @@ export default function Header(props) {
 									</IconButton>
 								</div>
 							</div>
-							: <NavLink to={'/login'}>
-								<Button color="inherit">Авторизация</Button>
-							</NavLink>
+							: <Button variant="contained" href="/login">Авторизация</Button>
 						}
 					</div>
 

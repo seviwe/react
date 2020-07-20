@@ -12,7 +12,8 @@ let initialState = {
         { id: 4, message: 'Test meesage 2', countLike: 0, countDislike: 1 },
     ],
     profile: null,
-    status: null
+    status: null,
+    //isAuth: false
 };
 
 export const profileReducer = (state = initialState, action) => {

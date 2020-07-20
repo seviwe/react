@@ -11,7 +11,6 @@ import { FormControl } from '../../common/FormsControls/FormsControls';
 const maxLength = maxLengthCreator(10);
 
 const MyPosts = (props) => {
-
 	let postsElement = props.posts.map(p => <Post key={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} />);
 
 	let addNewPost = (values) => {
@@ -20,9 +19,11 @@ const MyPosts = (props) => {
 
 	return (
 		<div className={styles.myposts}>
-			<div className={styles.newPost}>
-				<AddPostReduxForm onSubmit={addNewPost} />
-			</div>
+			{props.isAuth
+				&& <div className={styles.newPost}>
+					<AddPostReduxForm onSubmit={addNewPost} />
+				</div>
+			}
 			<div className={styles.posts}>
 				{postsElement}
 			</div>

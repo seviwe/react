@@ -60,10 +60,13 @@ export const authAPI = {
         return instance.get("auth/me");
     },
     //функция авторизации пользователя
-    authorizationUser(email, password) {
-        return instance.post("auth/login", { email: email, password: password })
+    login(email, password, rememberMe = false) {
+        return instance.post("auth/login", { email, password, rememberMe })
             .then(response => {
                 return response.data;
             });
+    },
+    logout() {
+        return instance.delete("auth/login");
     },
 };
