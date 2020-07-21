@@ -136,7 +136,7 @@ export default function Header(props) {
 		>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/profile" className={styles.noneHref}>Профиль</a></MenuItem>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/settings" className={styles.noneHref}>Настройки</a></MenuItem>
-			<MenuItem onClick={handleMenuClose, onLogout()}><a href="" className={styles.noneHref}>Выйти</a></MenuItem>
+			<MenuItem onClick={onLogout}><a href="" className={styles.noneHref}>Выйти</a></MenuItem>
 		</Menu>
 	);
 

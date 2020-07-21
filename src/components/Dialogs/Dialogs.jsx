@@ -55,7 +55,7 @@ const DialogForm = (props) => {
 			/> */}
 			{/* <Button variant="contained" size="medium" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>send</Icon>} onClick={onAddMessage}>Отправить</Button> */}
 
-			<Field component={FormControl} controlType="textarea" cols={"75"} name={"newMessageBody"} placeholder={"Введите сообщение..."} validate={[required, maxLength]} />
+			<Field component={FormControl} controlType="textarea" cols={"50"} name={"newMessageBody"} placeholder={"Введите сообщение..."} validate={[required, maxLength]} />
 			<div>
 				{/* <Button variant="contained" size="medium" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>send</Icon>}>Отправить</Button> */}
 				<button>Отправить</button>

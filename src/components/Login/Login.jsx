@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Login.module.css';
+//import styles from '../common/FormsControls/FormsControls.module.css';
 import { reduxForm, Field } from 'redux-form';
 import { required, maxLengthCreator } from '../../utils/validators/validators';
 import { FormControl } from '../../components/common/FormsControls/FormsControls';
@@ -12,8 +13,8 @@ const Login = (props) => {
 		props.authUser(values.login, values.password, values.rememberMe);
 	}
 
-	if(props.isAuth){ //если пользователь залогинен
-		return <Redirect to={"/profile"}/>
+	if (props.isAuth) { //если пользователь залогинен
+		return <Redirect to={"/profile"} />
 	}
 
 	return (
@@ -36,6 +37,11 @@ const LoginForm = (props) => {
 			<div>
 				<Field type={"checkbox"} component={"input"} name={"rememberMe"} /> Запомнить меня
 			</div>
+			{/* Вывод ошибки при неправильной авторизации */}
+			{props.error && <div className={styles.formError}>
+				{props.error}
+			</div>
+			}
 			<div>
 				<button>Войти</button>
 			</div>

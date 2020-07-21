@@ -44,7 +44,7 @@ const PostForm = (props) => {
 					className={styles.textArea}
 				/>
 				<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddPost}>Добавить</Button> */}
-			<Field component={FormControl} controlType="textarea" cols={"87"} name={"newPostBody"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
+			<Field component={FormControl} controlType="textarea" cols={60} name={"newPostBody"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
 			<div>
 				<button>Отправить</button>
 			</div>

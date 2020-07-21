@@ -1,7 +1,8 @@
 import { authAPI } from './../api/api';
+import { stopSubmit } from 'redux-form';
 
 const SET_USERS_DATA = 'SET_USERS_DATA';
-const AUTH_USER = 'AUTH_USER';
+//const AUTH_USER = 'AUTH_USER';
 
 //список пользователей соц сети и вся инфа о них. Берется из сервера
 let initialState = {
@@ -60,6 +61,9 @@ export const authUser = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe).then(data => {
         if (data.resultCode === 0) { //если нет ошибок
             dispatch(getAuthUserData()); //запрос логина с сервера
+        } else {
+            let error_message = data.messages.length > 0 ? data.messages[0] : "Произошла неведомая ошибка";
+            dispatch(stopSubmit("login", { _error: error_message })); //параметры: название формы, название ошибки
         }
     });
 }
