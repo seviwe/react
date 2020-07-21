@@ -8,8 +8,13 @@ import { compose } from 'redux';
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        //отображение моего профиля
-        if (!userId) userId = this.props.userId; /*7836*/
+        //отображение моего профиля //id 7836
+        if (!userId) {
+            userId = this.props.userId;
+            if(!userId){
+                this.props.history.push("/login"); //редирект на страницу авторизации
+            }
+        }
 
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
@@ -17,7 +22,7 @@ class ProfileContainer extends React.Component {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateUserStatus={this.props.updateUserStatus} />
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateUserStatus={this.props.updateUserStatus} isAuth={this.props.isAuth} />
         )
     }
 }

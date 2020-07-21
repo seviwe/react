@@ -41,13 +41,15 @@ const ProfileInfo = (props) => {
             <div className={styles.left}>
                 <AvatarImage imgSrc={props.profile.photos.large} />
             </div>
-            <Button className={styles.buttonUpd} variant="contained" color="default" size="small" startIcon={<CloudUploadIcon />}>Изменить фото</Button>
+            {props.isAuth &&
+                <Button className={styles.buttonUpd} variant="contained" color="default" size="small" startIcon={<CloudUploadIcon />}>Изменить фото</Button>
+            }
             <div className={styles.right}>
                 <div className={styles.text + " " + styles.border}>
                     {props.profile.fullName}
                 </div>
                 <div className={styles.text + " " + styles.border}>
-                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
+                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} isAuth={props.isAuth} />
                 </div>
                 {aboutMe}
                 <div className className={styles.border}>
