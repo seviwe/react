@@ -12,7 +12,7 @@ let Users = (props) => {
         pages.push(i); //создаем массив из страниц
     }
 
-    let usersElement = props.usersPage.users.map(u => <User name={u.name} key={u.id} id={u.id} imgSrc={u.photos.small} status={u.status} followed={u.followed} follow={props.follow} unfollow={props.unfollow} toggleIsFollowInProgress={props.toggleIsFollowInProgress} followingInProgress={props.followingInProgress} isAuth={props.isAuth} />);
+    let usersElement = props.usersPage.map(u => <User name={u.name} key={u.id} id={u.id} imgSrc={u.photos.small} status={u.status} followed={u.followed} follow={props.follow} unfollow={props.unfollow} toggleIsFollowInProgress={props.toggleIsFollowInProgress} followingInProgress={props.followingInProgress} isAuth={props.isAuth} />);
 
     const page = props.currentPage;
     const handleChange = (event, value) => {
