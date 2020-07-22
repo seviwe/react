@@ -4,7 +4,7 @@ import { follow, unfollow, setCurrentPage, getUsers } from './../../redux/usersR
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader.jsx';
 import { compose } from 'redux';
-import { getUsersSelector, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress, getIsAuth } from '../../redux/usersSelectors';
+import { getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress, getIsAuth, getUsersSelector } from '../../redux/usersSelectors';
 
 class UsersContainer extends React.Component {
 	componentDidMount() {
@@ -35,18 +35,6 @@ class UsersContainer extends React.Component {
 	}
 }
 
-// let mapStateToProps = (state) => {
-// 	return {
-// 		usersPage: state.usersPage,
-// 		pageSize: state.usersPage.pageSize,
-// 		totalUsersCount: state.usersPage.totalUsersCount,
-// 		currentPage: state.usersPage.currentPage,
-// 		isFetching: state.usersPage.isFetching,
-// 		followingInProgress: state.usersPage.followingInProgress,
-// 		isAuth: state.auth.isAuth,
-// 	}
-// }
-
 let mapStateToProps = (state) => {
 	return {
 		usersPage: getUsersSelector(state),
@@ -60,5 +48,4 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-	connect(mapStateToProps, { follow, unfollow, setCurrentPage, getUsers })
-)(UsersContainer);
+	connect(mapStateToProps, { follow, unfollow, setCurrentPage, getUsers }))(UsersContainer);
