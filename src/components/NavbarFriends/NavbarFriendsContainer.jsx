@@ -8,6 +8,4 @@ let mapStateToProps = (state) => {
 	}
 }
 
-const NavbarFriendsContainer = connect(mapStateToProps)(NavbarFriends);
-
-export default NavbarFriendsContainer;
+export default connect(mapStateToProps)(NavbarFriends);
