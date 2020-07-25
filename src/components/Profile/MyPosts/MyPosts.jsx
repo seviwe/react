@@ -11,7 +11,7 @@ import { FormControl } from '../../common/FormsControls/FormsControls';
 const maxLength = maxLengthCreator(10);
 
 const MyPosts = (props) => {
-	let postsElement = props.posts.map(p => <Post key={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} />);
+	let postsElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} />);
 
 	let addNewPost = (values) => {
 		props.addPost(values.newPostBody);
@@ -42,8 +42,8 @@ const PostForm = (props) => {
 					onChange={onPostChange}
 					value={props.newPostText}
 					className={styles.textArea}
-				/>
-				<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddPost}>Добавить</Button> */}
+			/>
+			<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddPost}>Добавить</Button> */}
 			<Field component={FormControl} controlType="textarea" className={styles.textAreaWidthAuto} name={"newPostBody"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
 			<div>
 				<button>Отправить</button>
@@ -51,6 +51,7 @@ const PostForm = (props) => {
 		</form>
 	)
 }
+
 const AddPostReduxForm = reduxForm({ form: 'postAddForm' })(PostForm);
 
 export default MyPosts;

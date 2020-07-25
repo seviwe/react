@@ -1,17 +1,15 @@
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
-import { addPost } from '../../../redux/profileReducer';
+import { addPost, setLikePost, setDislikePost, unsetLikePost, unsetDislikePost } from '../../../redux/profileReducer';
 
 let mapStateToProps = (state) => {
-	//console.log(state.auth.isAuth);
+	//console.log(state);
 	return {
 		posts: state.profilePage.posts,
-		isAuth: state.auth.isAuth, 
-		//newPostText: state.profilePage.newPostText
+		isAuth: state.auth.isAuth,
+		login: state.auth.login,
 	}
 }
 
 //connect()() вызов функции connect, а потом вызов того, что она вернула
-const MyPostsContainer = connect(mapStateToProps, { addPost })(MyPosts);
-
-export default MyPostsContainer;
+export default connect(mapStateToProps, { addPost, setLikePost, setDislikePost, unsetLikePost, unsetDislikePost })(MyPosts);
