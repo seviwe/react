@@ -2,9 +2,8 @@
     grid-area: c;
 }
 
-.textArea {
-    width: 100%;
-    /* resize: none; */
+.textAreaWidthAuto{
+    width: 99%;
 }
 
 .myposts {

@@ -27,8 +27,8 @@
     margin-top: 10px;
 }
 
-.textArea{
-    width: 100%;
+.textAreaWidthAuto{
+    width: 99%;
 }
 
 .border {
