@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getUserProfile, getUserStatus, updateUserStatus } from './../../redux/profileReducer';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { getProfile, getStatus } from './../../selectors/profileSelectors';
+import { getIsAuth, getUserId } from './../../selectors/authSelectors';
 
 const ProfileContainer = (props) => {
     useEffect(() => {
@@ -25,10 +27,10 @@ const ProfileContainer = (props) => {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    userId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    profile: getProfile(state),
+    status: getStatus(state),
+    userId: getUserId(state),
+    isAuth: getIsAuth(state)
 });
 
 export default compose(connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }), withRouter)(ProfileContainer);

@@ -4,8 +4,9 @@ import { follow, unfollow, setCurrentPage, getUsers } from './../../redux/usersR
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader.jsx';
 import { compose } from 'redux';
-import { getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress, getIsAuth, getUsersSelector } from '../../redux/usersSelectors';
+import { getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress, getUsersSelector } from '../../selectors/usersSelectors';
 import { useEffect } from 'react';
+import { getIsAuth } from '../../selectors/authSelectors';
 
 const UsersContainer = (props) => {
 	useEffect(() => {

@@ -1,10 +1,11 @@
 import { authUser } from '../../redux/authReducer';
 import Login from './Login';
 import { connect } from 'react-redux';
+import { getIsAuth } from './../../selectors/authSelectors';
 
 let mapStateToProps = (state) => {
 	return {
-		isAuth: state.auth.isAuth
+		isAuth: getIsAuth(state)
 	}
 }
 

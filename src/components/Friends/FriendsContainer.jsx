@@ -1,13 +1,12 @@
 import Friends from './Friends';
 import '../../redux/friendsReducer';
 import { connect } from 'react-redux';
+import { getFriends } from './../../selectors/friendsSelectors';
 
 let mapStateToProps = (state) => {
 	return {
-		friendsPage: state.friendsPage.friends
+		friendsPage: getFriends(state)
 	}
 }
 
-const FriendsContainer = connect(mapStateToProps)(Friends);
-
-export default FriendsContainer;
+export default connect(mapStateToProps)(Friends);

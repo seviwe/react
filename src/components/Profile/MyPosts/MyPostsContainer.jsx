@@ -1,13 +1,14 @@
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 import { addPost, setLikePost, setDislikePost, unsetLikePost, unsetDislikePost } from '../../../redux/profileReducer';
+import { getPosts } from '../../../selectors/profileSelectors';
+import { getLogin, getIsAuth } from '../../../selectors/authSelectors';
 
 let mapStateToProps = (state) => {
-	//console.log(state);
 	return {
-		posts: state.profilePage.posts,
-		isAuth: state.auth.isAuth,
-		login: state.auth.login,
+		posts: getPosts(state),
+		isAuth: getIsAuth(state),
+		login: getLogin(state),
 	}
 }
 

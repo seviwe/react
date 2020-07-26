@@ -8,7 +8,7 @@ const getUsers = (state) => {
 //исп библиотеки reselect 
 //параметры: 1-примитивный селектор, 2-конечное значение (зависимость)
 export const getUsersSelector = createSelector(getUsers, (users) => {
-    return users.filter(u => true);
+    return users.filter(u => true); //заглушка в качетсве примера
 });
 
 export const getPageSize = (state) => {
@@ -29,8 +29,4 @@ export const getIsFetching = (state) => {
 
 export const getFollowingInProgress = (state) => {
     return state.usersPage.followingInProgress;
-}
-
-export const getIsAuth = (state) => {
-    return state.auth.isAuth;
 }
