@@ -7,6 +7,7 @@ const SET_LIKE_POST = 'SET_LIKE_POST';
 const SET_DISLIKE_POST = 'SET_DISLIKE_POST';
 const UNSET_LIKE_POST = 'UNSET_LIKE_POST';
 const UNSET_DISLIKE_POST = 'UNSET_DISLIKE_POST';
+const DEL_POST = 'DEL_POST';
 
 let initialState = {
     posts: [
@@ -92,12 +93,21 @@ export const profileReducer = (state = initialState, action) => {
                 })
             };
         }
+        case DEL_POST: {
+            //глубокое копирование объекта
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.postId)
+            };
+        }
         default:
             return state;
     }
 }
 
 export const addPost = (newPostBody) => ({ type: ADD_POST, newPostBody })
+export const deletePost = (postId) => ({ type: DEL_POST, postId })
+
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status })
 

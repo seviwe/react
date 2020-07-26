@@ -5,6 +5,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const Post = (props) => {
 	//console.log(props);
@@ -15,7 +16,8 @@ const Post = (props) => {
 			</div>
 			<div>
 				<div className={styles.postMessage}>
-					{props.login} добавил новый пост:
+					<span>{props.login} добавил новый пост:</span>
+					<span onClick={() => { props.deletePost(props.id); }} className={styles.delPost}><HighlightOffIcon fontSize="small" /></span>
 				</div>
 				<div className={styles.postMessage}>
 					{props.message}

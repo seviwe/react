@@ -8,13 +8,13 @@ import { reduxForm, Field } from 'redux-form';
 import { required, maxLengthCreator } from "../../../utils/validators/validators";
 import { FormControl } from '../../common/FormsControls/FormsControls';
 
-const maxLength = maxLengthCreator(10);
+const maxLength = maxLengthCreator(300);
 
 const MyPosts = (props) => {
 	let postsElement =
 		[...props.posts]
 			.reverse()
-			.map(p => <Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} />);
+			.map(p => <Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} deletePost={props.deletePost} />);
 
 	let addNewPost = (values) => {
 		props.addPost(values.newPostBody);

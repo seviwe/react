@@ -10,7 +10,7 @@ import { reduxForm, Field } from 'redux-form';
 import { FormControl } from '../common/FormsControls/FormsControls';
 import { required, maxLengthCreator } from "../../utils/validators/validators";
 
-const maxLength = maxLengthCreator(10);
+const maxLength = maxLengthCreator(300);
 
 const Dialogs = (props) => {
 
