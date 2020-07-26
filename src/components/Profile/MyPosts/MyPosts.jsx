@@ -11,7 +11,10 @@ import { FormControl } from '../../common/FormsControls/FormsControls';
 const maxLength = maxLengthCreator(10);
 
 const MyPosts = (props) => {
-	let postsElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} />);
+	let postsElement =
+		[...props.posts]
+			.reverse()
+			.map(p => <Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} />);
 
 	let addNewPost = (values) => {
 		props.addPost(values.newPostBody);
