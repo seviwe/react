@@ -10,7 +10,8 @@ import { getIsAuth } from '../../selectors/authSelectors';
 
 const UsersContainer = (props) => {
 	useEffect(() => {
-		props.getUsers(props.currentPage, props.pageSize);
+		let {currentPage, pageSize} = props; //деструктуризация пропсов
+		props.getUsers(currentPage, pageSize);
 	}, [])
 
 	const onPageChanged = (pageNumber) => {

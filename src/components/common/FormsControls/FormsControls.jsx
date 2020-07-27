@@ -1,18 +1,17 @@
 import React from "react";
 import styles from './FormsControls.module.css';
+import { reduxForm, Field } from 'redux-form';
 //import Button from '@material-ui/core/Button';
 //import Icon from '@material-ui/core/Icon';
-import TextField from '@material-ui/core/TextField';
+//import TextField from '@material-ui/core/TextField';
 
 /*REST оператор. Пропсы будут содержать в себе всё, кроме input и meta*/
-export let FormControl = ({ input, meta, controlType, ...props }) => {
-
-    const hasError = meta.touched && meta.error;
-
+export let FormControl = ({ input, meta: {touched, error}, controlType, ...props }) => {
+    const hasError = touched && error;
     return (
         <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
-            {React.createElement(controlType, {...input, ...props})}
-            {hasError && <span>{meta.error}</span>}
+            {React.createElement(controlType, { ...input, ...props })}
+            {hasError && <span>{error}</span>}
         </div>
     )
 }
@@ -40,3 +39,11 @@ export let FormControl = ({ input, meta, controlType, ...props }) => {
 //         </div>
 //     )
 // }
+
+export const createField = (placeholder, name, validators, component, controlType, type = {}, props = {}, text = {}) => {
+    return (
+        <div>
+            <Field placeholder={placeholder} name={name} component={component} controlType={controlType} validate={validators} type={type} {...props} />{text}
+        </div>
+    )
+}

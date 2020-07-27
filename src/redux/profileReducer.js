@@ -1,13 +1,13 @@
 import { profileAPI } from "../api/api";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_USER_STATUS = 'SET_USER_STATUS';
-const SET_LIKE_POST = 'SET_LIKE_POST';
-const SET_DISLIKE_POST = 'SET_DISLIKE_POST';
-const UNSET_LIKE_POST = 'UNSET_LIKE_POST';
-const UNSET_DISLIKE_POST = 'UNSET_DISLIKE_POST';
-const DEL_POST = 'DEL_POST';
+const ADD_POST = 'antiVK/profile/ADD-POST';
+const SET_USER_PROFILE = 'antiVK/profile/SET_USER_PROFILE';
+const SET_USER_STATUS = 'antiVK/profile/SET_USER_STATUS';
+const SET_LIKE_POST = 'antiVK/profile/SET_LIKE_POST';
+const SET_DISLIKE_POST = 'antiVK/profile/SET_DISLIKE_POST';
+const UNSET_LIKE_POST = 'antiVK/profile/UNSET_LIKE_POST';
+const UNSET_DISLIKE_POST = 'antiVK/profile/UNSET_DISLIKE_POST';
+const DEL_POST = 'antiVK/profile/DEL_POST';
 
 let initialState = {
     posts: [
@@ -118,27 +118,24 @@ export const unsetLikePost = (postId) => ({ type: UNSET_LIKE_POST, postId })
 export const unsetDislikePost = (postId) => ({ type: UNSET_DISLIKE_POST, postId })
 
 
-export const getUserProfile = (userId) => (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
     //запрос с сервера профиля пользователя
-    profileAPI.getProfileUser(userId).then(data => {
-        dispatch(setUserProfile(data));
-    });
+    let data = await profileAPI.getProfileUser(userId)
+    dispatch(setUserProfile(data));
 }
 
-export const getUserStatus = (userId) => (dispatch) => {
+export const getUserStatus = (userId) => async (dispatch) => {
     //запрос с сервера статуса пользователя
-    profileAPI.getStatusUser(userId).then(data => {
-        dispatch(setUserStatus(data));
-    });
+    let data = await profileAPI.getStatusUser(userId)
+    dispatch(setUserStatus(data));
 }
 
-export const updateUserStatus = (status) => (dispatch) => {
+export const updateUserStatus = (status) => async (dispatch) => {
     //обновления статуса пользователя
-    profileAPI.updateStatusUser(status).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(setUserStatus(status));
-        }
-    });
+    let response = await profileAPI.updateStatusUser(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setUserStatus(status));
+    }
 }
 
 export default profileReducer;

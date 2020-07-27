@@ -1,12 +1,13 @@
 import { usersAPI } from './../api/api';
+import { updObjInArrFollowUnfollow } from '../utils/validators/helpers/objectsHelpers';
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURR_PAGE = "SET_CURR_PAGE";
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
+const FOLLOW = 'antiVK/users/FOLLOW';
+const UNFOLLOW = 'antiVK/users/UNFOLLOW';
+const SET_USERS = 'antiVK/users/SET_USERS';
+const SET_CURR_PAGE = 'antiVK/users/SET_CURR_PAGE';
+const SET_TOTAL_USERS_COUNT = 'antiVK/users/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'antiVK/users/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'antiVK/users/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 //список пользователей соц сети и вся инфа о них. Берется из сервера
 let initialState = {
@@ -23,23 +24,20 @@ export const usersReducer = (state = initialState, action) => {
         case FOLLOW: {
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return { ...u, followed: true }
-                    }
-                    return u;
-                })
+                //было
+                // users: state.users.map(u => {
+                //     if (u.id === action.userId) {
+                //         return { ...u, followed: true }
+                //     }
+                //     return u;
+                // })
+                users: updObjInArrFollowUnfollow(state.users, action.userId, "id", { followed: true })
             };
         }
         case UNFOLLOW: {
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return { ...u, followed: false }
-                    }
-                    return u;
-                })
+                users: updObjInArrFollowUnfollow(state.users, action.userId, "id", { followed: false })
             };
         }
         case SET_USERS: {
@@ -60,7 +58,6 @@ export const usersReducer = (state = initialState, action) => {
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(id => id != action.userId)
-
             }
         }
         default:
@@ -71,45 +68,44 @@ export const usersReducer = (state = initialState, action) => {
 //actionCreators
 export const followSuccess = (userId) => ({ type: FOLLOW, userId });
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
+
 export const setUsers = (users) => ({ type: SET_USERS, users });
+
 export const setCurrentPage = (currentPage) => ({ type: SET_CURR_PAGE, currentPage });
+
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
+
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleIsFollowInProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
 //thunk делает кучу асинхронных запросов и диспатч
-export const getUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
+export const getUsers = (currentPage, pageSize) => { //thunk-creator
+    return async (dispatch) => { //thunk
         dispatch(toggleIsFetching(true)); //отображение крутилки загрузки
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(toggleIsFetching(false)); //отключить крутилку загрузки
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
-        });
+        let data = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(toggleIsFetching(false)); //отключить крутилку загрузки
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
     }
 }
 
+//функция для thunk-creator'a follow and unfollow
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(toggleIsFollowInProgress(true, userId));
+    let data = await apiMethod(userId);
+    if (data.resultCode === 0) dispatch(actionCreator(userId));
+    dispatch(toggleIsFollowInProgress(false, userId));
+}
+
 export const follow = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleIsFollowInProgress(true, userId));
-        usersAPI.followUser(userId).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(followSuccess(userId));
-            }
-            dispatch(toggleIsFollowInProgress(false, userId));
-        });
+    return async (dispatch) => {
+        followUnfollowFlow(dispatch, userId, usersAPI.followUser.bind(userId), followSuccess);
     }
 }
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleIsFollowInProgress(true, userId));
-        usersAPI.unfollowUser(userId).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unfollowSuccess(userId));
-            }
-            dispatch(toggleIsFollowInProgress(false, userId));
-        });
+    return async (dispatch) => {
+        followUnfollowFlow(dispatch, userId, usersAPI.unfollowUser.bind(userId), unfollowSuccess);
     }
 }
 

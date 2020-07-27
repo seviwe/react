@@ -3,17 +3,17 @@ import styles from './Login.module.css';
 //import styles from '../common/FormsControls/FormsControls.module.css';
 import { reduxForm, Field } from 'redux-form';
 import { required, maxLengthCreator } from '../../utils/validators/validators';
-import { FormControl } from '../../components/common/FormsControls/FormsControls';
+import { FormControl, createField } from '../../components/common/FormsControls/FormsControls';
 import { Redirect } from 'react-router-dom';
 
 const maxLength = maxLengthCreator(30);
 
-const Login = (props) => {
+const Login = ({ isAuth, authUser }) => {
 	let AuthNewUser = (values) => {
-		props.authUser(values.login, values.password, values.rememberMe);
+		authUser(values.login, values.password, values.rememberMe);
 	}
 
-	if (props.isAuth) { //если пользователь залогинен
+	if (isAuth) { //если пользователь залогинен
 		return <Redirect to={"/profile"} />
 	}
 
@@ -28,12 +28,14 @@ const Login = (props) => {
 const LoginForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
-			<div>
+			{createField("Логин", "login", [required, maxLength], FormControl, "input", "", props, "")}
+			{createField("Пароль", "password", [required, maxLength], FormControl, "input", "password", props, "")}
+			{/* <div>
 				<Field placeholder={"Логин"} name={"login"} component={FormControl} controlType="input" validate={[required, maxLength]} />
 			</div>
-			<div>
+			 <div>
 				<Field placeholder={"Пароль"} name={"password"} component={FormControl} type={"password"} controlType="input" validate={[required, maxLength]} />
-			</div>
+			</div> */}
 			<div>
 				<Field type={"checkbox"} component={"input"} name={"rememberMe"} /> Запомнить меня
 			</div>
