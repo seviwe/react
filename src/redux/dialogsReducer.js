@@ -24,7 +24,7 @@ export const dialogsReducer = (state = initialState, action) => {
             //глубокое копирование объекта
             return {
                 ...state,
-                messages: [...state.messages, { id: 4, message: action.newMessageBody }]
+                messages: [...state.messages, { id: (state.messages.length) + 1, message: action.newMessageBody }]
             };
         }
         default:

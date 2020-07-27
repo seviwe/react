@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { profileReducer } from "./profileReducer";
 import { dialogsReducer } from "./dialogsReducer";
 import { friendsReducer } from "./friendsReducer";
@@ -18,8 +18,7 @@ let reducers = combineReducers({
     app: appReducer,
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+//подключение расширения Redux для Google Chrome
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-//window.store = store;
-
-export default store;
+export default createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
