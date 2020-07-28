@@ -21,7 +21,7 @@ let Users = (props) => {
                 {usersElement}
             </div>
             <div className={styles.paginationCenter}>
-                <Pagination count={pagesCount} defaultPage={1} boundaryCount={7} page={props.currentPage} color="primary" onChange={handleChange} />
+                <Pagination count={pagesCount} defaultPage={1} boundaryCount={6} page={props.currentPage} color="primary" onChange={handleChange} />
             </div>
         </div>
     )
