@@ -1,5 +1,5 @@
 import { usersAPI } from './../api/api';
-import { updObjInArrFollowUnfollow } from '../utils/validators/helpers/objectsHelpers';
+import { updObjInArrFollowUnfollow } from '../utils/helpers/objectsHelpers';
 
 const FOLLOW = 'antiVK/users/FOLLOW';
 const UNFOLLOW = 'antiVK/users/UNFOLLOW';
