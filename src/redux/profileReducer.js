@@ -8,6 +8,7 @@ const SET_DISLIKE_POST = 'antiVK/profile/SET_DISLIKE_POST';
 const UNSET_LIKE_POST = 'antiVK/profile/UNSET_LIKE_POST';
 const UNSET_DISLIKE_POST = 'antiVK/profile/UNSET_DISLIKE_POST';
 const DEL_POST = 'antiVK/profile/DEL_POST';
+const SET_USER_PHOTO_AVATAR = 'antiVK/profile/SET_USER_PHOTO_AVATAR';
 
 let initialState = {
     posts: [
@@ -100,6 +101,13 @@ export const profileReducer = (state = initialState, action) => {
                 posts: state.posts.filter(p => p.id != action.postId)
             };
         }
+        case SET_USER_PHOTO_AVATAR: {
+            //добавление аватарки профиля
+            return {
+                ...state,
+                profile: { ...state.profile, photos: action.photos }
+            };
+        }
         default:
             return state;
     }
@@ -110,6 +118,7 @@ export const deletePost = (postId) => ({ type: DEL_POST, postId })
 
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status })
+export const setAvatarPhotoSuccess = (photos) => ({ type: SET_USER_PHOTO_AVATAR, photos })
 
 export const setLikePost = (postId) => ({ type: SET_LIKE_POST, postId })
 export const setDislikePost = (postId) => ({ type: SET_DISLIKE_POST, postId })
@@ -135,6 +144,14 @@ export const updateUserStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateStatusUser(status)
     if (response.data.resultCode === 0) {
         dispatch(setUserStatus(status));
+    }
+}
+
+export const savePhoto = (file) => async (dispatch) => {
+    //обновления статуса пользователя
+    let response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(setAvatarPhotoSuccess(response.data.data.photos));
     }
 }
 

@@ -12,38 +12,55 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    input: {
+        display: 'none',
+    },
+}));
 
 const ProfileInfo = (props) => {
-    if (!props.profile) {
-        return <Preloader />
+    //console.log(props);
+    const classes = useStyles();
+
+    const onAvatarPhotoSelected = (e) => {
+        //console.log(e.target.files);
+        if (e.target.files.length) {
+            //console.log(props);
+            props.savePhoto(e.target.files[0]);
+        }
     }
+
+    if (!props.profile) return <Preloader />
 
     //поиск работы
     let searchJob = "нет";
-    if (props.profile.lookingForAJob) {
-        searchJob = "да";
-    }
+    if (props.profile.lookingForAJob) searchJob = "да";
 
     //о работе
     let jobDesc = ""
-    if (props.profile.lookingForAJobDescription) {
-        jobDesc = "О работе: " + props.profile.lookingForAJobDescription;
-    }
+    if (props.profile.lookingForAJobDescription) jobDesc = "О работе: " + props.profile.lookingForAJobDescription;
 
     //статус
     let aboutMe = "";
-    if (props.profile.aboutMe) {
-        aboutMe = <div className={styles.border}> {props.profile.aboutMe} </div>;
-    }
+    if (props.profile.aboutMe) aboutMe = <div className={styles.border}> {props.profile.aboutMe} </div>;
 
     return (
         <div className={styles.profileInfo}>
             <div className={styles.left}>
                 <AvatarImage imgSrc={props.profile.photos.large} />
             </div>
-            {props.isAuth &&
-                <Button className={styles.buttonUpd} variant="contained" color="default" size="small" startIcon={<CloudUploadIcon />}>Изменить фото</Button>
+            {props.isAuth && props.isOwner &&
+                <div>
+                    {/* <input accept="image/*" className={classes.input + " " + styles.buttonUpd} id="contained-button-file" type="file" />
+                    <label htmlFor="contained-button-file">
+                        <Button variant="contained" color="default" size="small" component="span" startIcon={<CloudUploadIcon />} onChange={onAvatarPhotoSelected}>Изменить фото</Button>
+                    </label> */}
+                    <input type={"file"} onChange={onAvatarPhotoSelected} />
+                </div>
             }
+            {/* <Button className={styles.buttonUpd} variant="contained" color="default" size="small" type={"file"} startIcon={<CloudUploadIcon />}>Изменить фото</Button> */}
             <div className={styles.right}>
                 <div className={styles.text + " " + styles.border}>
                     {props.profile.fullName}

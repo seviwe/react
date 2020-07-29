@@ -52,6 +52,16 @@ export const profileAPI = {
     updateStatusUser(status) {
         return instance.put("profile/status", { status: status });
     },
+    //функция обновления статуса пользователя
+    savePhoto(photoFile) {
+        const formData = new FormData();
+        formData.append("image", photoFile);
+        return instance.put("profile/photo", formData, {
+            headers: {
+                'Content-type': 'multipart/form-data'
+            }
+        });
+    },
 };
 
 export const authAPI = {

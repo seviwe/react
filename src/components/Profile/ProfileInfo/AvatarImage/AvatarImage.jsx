@@ -3,7 +3,6 @@ import styles from './AvatarImage.module.css';
 import noneAvatar from '../../../../assets/img/noneAvatar.png';
 
 const AvatarImage = (props) => {
-
 	if (!props.imgSrc) { //если нет фото
 		return (
 			<div className={styles.avatar}>
