@@ -80,3 +80,12 @@
 .border a {
     padding-right: 10px;
 }
+
+.editButton {
+    float: right;
+    padding: 0px;
+}
+
+.contact{
+    padding-left: 10px;
+}

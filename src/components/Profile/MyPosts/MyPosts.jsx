@@ -14,7 +14,7 @@ const MyPosts = (props) => {
 	let postsElement =
 		[...props.posts]
 			.reverse()
-			.map(p => <Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} deletePost={props.deletePost} />);
+			.map(p => <Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} deletePost={props.deletePost} isOwner={props.isOwner} />);
 
 	let addNewPost = (values) => {
 		props.addPost(values.newPostBody);

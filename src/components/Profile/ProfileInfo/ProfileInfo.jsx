@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader.jsx';
 import AvatarImage from './AvatarImage/AvatarImage';
@@ -13,6 +13,8 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { makeStyles } from '@material-ui/core/styles';
+import { IconButton } from '@material-ui/core';
+import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -21,15 +23,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProfileInfo = (props) => {
-    //console.log(props);
+    let [editMode, setEditMode] = useState(false);
     const classes = useStyles();
 
     const onAvatarPhotoSelected = (e) => {
-        //console.log(e.target.files);
-        if (e.target.files.length) {
-            //console.log(props);
-            props.savePhoto(e.target.files[0]);
-        }
+        if (e.target.files.length) props.savePhoto(e.target.files[0]);
+    }
+
+    const onEditContacts = () => {
+        setEditMode(true);
     }
 
     if (!props.profile) return <Preloader />
@@ -53,27 +55,21 @@ const ProfileInfo = (props) => {
             </div>
             {props.isAuth && props.isOwner &&
                 <div>
-                    {/* <input accept="image/*" className={classes.input + " " + styles.buttonUpd} id="contained-button-file" type="file" />
+                    <input accept="image/*" className={classes.input + " " + styles.buttonUpd} id="contained-button-file" type="file" onChange={onAvatarPhotoSelected} />
                     <label htmlFor="contained-button-file">
-                        <Button variant="contained" color="default" size="small" component="span" startIcon={<CloudUploadIcon />} onChange={onAvatarPhotoSelected}>Изменить фото</Button>
-                    </label> */}
-                    <input type={"file"} onChange={onAvatarPhotoSelected} />
+                        <Button variant="contained" color="default" size="small" component="span" startIcon={<CloudUploadIcon />}>Изменить фото</Button>
+                    </label>
                 </div>
             }
-            {/* <Button className={styles.buttonUpd} variant="contained" color="default" size="small" type={"file"} startIcon={<CloudUploadIcon />}>Изменить фото</Button> */}
             <div className={styles.right}>
                 <div className={styles.text + " " + styles.border}>
-                    {props.profile.fullName}
+                    <b>{props.profile.fullName}</b>
                 </div>
                 <div className={styles.text + " " + styles.border}>
                     <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} isAuth={props.isAuth} />
                 </div>
                 {aboutMe}
-                <div className className={styles.border}>
-                    {/* День рождения: 17 мая 1997 г. <br />
-                    Город: Муром <br />
-					Место учебы: МИ ВлГУ им. Столетовых '20 <br />
-                    <hr /> */}
+                <div className={styles.border}>
                     Контактная информация: <br />
                     <a href={props.profile.contacts.facebook} target="_blank"><FacebookIcon fontSize="default" color="primary" /></a>
                     <a href={props.profile.contacts.website} target="_blank"><LanguageIcon fontSize="default" color="primary" /></a>
@@ -82,11 +78,36 @@ const ProfileInfo = (props) => {
                     <a href={props.profile.contacts.instagram} target="_blank"><InstagramIcon fontSize="default" color="primary" /></a>
                     <a href={props.profile.contacts.youtube} target="_blank"><YouTubeIcon fontSize="default" color="primary" /></a>
                     <a href={props.profile.contacts.github} target="_blank"><GitHubIcon fontSize="default" color="primary" /></a>
+                    {props.isOwner &&
+                        <span className={styles.editButton} onClick={onEditContacts}><CreateIcon /></span>
+                    }
+                    {editMode &&
+                        Object.keys(props.profile.contacts).map(key => {
+                            return <ContactForm key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+                        })
+                    }
                     <hr />
-                    В поиске работы: {searchJob} <br />
+                    <b>В поиске работы:</b> {searchJob} <br />
                     {jobDesc}
                 </div>
             </div>
+        </div>
+    )
+}
+
+
+const Contact = ({ contactTitle, contactValue }) => {
+    return (
+        <div className={styles.contact}>
+            <b>{contactTitle}</b>: {contactValue}
+        </div>
+    )
+}
+
+const ContactForm = ({ contactTitle, contactValue }) => {
+    return (
+        <div className={styles.contact}>
+            <b>{contactTitle}</b>: {contactValue}
         </div>
     )
 }
