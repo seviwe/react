@@ -62,6 +62,10 @@ export const profileAPI = {
             }
         });
     },
+    //функция обновления профиля пользователя
+    saveProfile(profile) {
+        return instance.put("profile", profile);
+    },
 };
 
 export const authAPI = {

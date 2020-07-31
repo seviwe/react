@@ -89,3 +89,9 @@
 .contact{
     padding-left: 10px;
 }
+
+.formError{
+    /*border: 1px red solid;*/
+    padding: 5px;
+    color: red;
+}

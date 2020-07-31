@@ -1,4 +1,5 @@
 import { profileAPI } from "../api/api";
+import { stopSubmit } from 'redux-form';
 
 const ADD_POST = 'antiVK/profile/ADD-POST';
 const SET_USER_PROFILE = 'antiVK/profile/SET_USER_PROFILE';
@@ -129,19 +130,19 @@ export const unsetDislikePost = (postId) => ({ type: UNSET_DISLIKE_POST, postId 
 
 export const getUserProfile = (userId) => async (dispatch) => {
     //запрос с сервера профиля пользователя
-    let data = await profileAPI.getProfileUser(userId)
+    const data = await profileAPI.getProfileUser(userId)
     dispatch(setUserProfile(data));
 }
 
 export const getUserStatus = (userId) => async (dispatch) => {
     //запрос с сервера статуса пользователя
-    let data = await profileAPI.getStatusUser(userId)
+    const data = await profileAPI.getStatusUser(userId)
     dispatch(setUserStatus(data));
 }
 
 export const updateUserStatus = (status) => async (dispatch) => {
     //обновления статуса пользователя
-    let response = await profileAPI.updateStatusUser(status)
+    const response = await profileAPI.updateStatusUser(status)
     if (response.data.resultCode === 0) {
         dispatch(setUserStatus(status));
     }
@@ -149,9 +150,20 @@ export const updateUserStatus = (status) => async (dispatch) => {
 
 export const savePhoto = (file) => async (dispatch) => {
     //обновления статуса пользователя
-    let response = await profileAPI.savePhoto(file)
+    const response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(setAvatarPhotoSuccess(response.data.data.photos));
+    }
+}
+
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    //обновления профиля пользователя
+    const response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(userId)); //обновление профиля, после выполнения запроса
+    } else {
+        dispatch(stopSubmit("updateContact", { _error: response.data.messages[0] })); //параметры: название формы, название ошибки
     }
 }
 

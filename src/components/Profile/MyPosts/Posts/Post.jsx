@@ -6,13 +6,14 @@ import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import Avatar from '@material-ui/core/Avatar';
 
 const Post = (props) => {
-	//console.log(props);
 	return (
 		<div className={styles.item}>
 			<div>
-				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQZH7c1xxmppduvnIzq7oevpcDCK3nDoGgqjR6-yZ7L7kHCKDeq" />
+				{!props.avaPhoto && <Avatar>VA</Avatar>}
+				{props.avaPhoto && <Avatar alt="avatar" src={props.avaPhoto} />}
 			</div>
 			<div>
 				<div className={styles.postMessage}>

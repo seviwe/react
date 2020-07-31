@@ -12,7 +12,9 @@ const ProfileStatus = (props) => {
     }, [props.status]); //[props.status] - зависимость от статуса, тогда происходит синхронизация, когда пропсы приходят 
 
     const activateEditMode = () => {
-        setEditMode(true);
+        if (props.isOwner) {
+            setEditMode(true);
+        }
     }
 
     const deactivateEditMode = () => {
@@ -29,7 +31,7 @@ const ProfileStatus = (props) => {
             {!editMode &&
                 <span onClick={activateEditMode}>{props.status || "No status..."}</span>
             }
-            {props.isAuth && editMode &&
+            {props.isAuth && editMode && props.isOwner &&
                 <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status} />
             }
         </div>

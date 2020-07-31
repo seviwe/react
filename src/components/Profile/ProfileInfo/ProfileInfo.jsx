@@ -22,7 +22,7 @@ import { FormControl, createField } from '../../common/FormsControls/FormsContro
 import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 import VisibilityIconOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 
-const maxLength = maxLengthCreator(40);
+const maxLength = maxLengthCreator(50);
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProfileInfo = (props) => {
-    let [editModeContact, setEditModeContact] = useState(false);
     let [viewModeContact, setViewModeContact] = useState(false);
+    let [editModeContact, setEditModeContact] = useState(false);
     let [editModeFullName, setEditModeFullName] = useState(false);
     let [editModeSearchJob, setEditModeSearchJob] = useState(false);
     let [editModeJobDesc, setEditModeJobDesc] = useState(false);
@@ -51,10 +51,6 @@ const ProfileInfo = (props) => {
     const deactivateEditModeFullName = () => {
         setEditModeFullName(false);
     }
-    const updateFullName = (values) => {
-        //обновление имени пользователя
-        console.log(values);
-    }
 
     //контакты
     const onViewContacts = () => {
@@ -69,11 +65,6 @@ const ProfileInfo = (props) => {
         setEditModeContact(false);
         setViewModeContact(false);
     }
-    const updateContacts = (values) => {
-        //обновление имени пользователя
-        console.log(values);
-    }
-
 
     //поиск работы
     const onEditSearchJob = () => {
@@ -81,10 +72,6 @@ const ProfileInfo = (props) => {
     }
     const deactivateEditModeSearchJob = () => {
         setEditModeSearchJob(false);
-    }
-    const updateSearchJob = (values) => {
-        //обновление статуса поиска работы
-        console.log(values);
     }
 
     //о работе
@@ -94,21 +81,72 @@ const ProfileInfo = (props) => {
     const deactivateEditModeJobDesc = () => {
         setEditModeJobDesc(false);
     }
-    const updateJobDesc = (values) => {
-        //обновление информации
-        console.log(values);
-    }
 
-    //о работе
+    //о себе
     const onEditMe = () => {
         setEditModeMe(true);
     }
     const deactivateEditModeMe = () => {
         setEditModeMe(false);
     }
-    const updateMe = (values) => {
-        //обновление раздела о себе
-        console.log(values);
+
+    let profile = {};
+    if (props.profile) {
+        profile = {
+            userId: props.profile.userId,
+            lookingForAJob: props.profile.lookingForAJob ? props.profile.lookingForAJob : false,
+            LookingForAJobDescription: props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : "отсутствует",
+            fullName: props.profile.fullName,
+            AboutMe: props.profile.aboutMe ? props.profile.aboutMe : "отсутствует",
+            contacts: {}
+        }
+    }
+
+    //обновление информации
+    const updateProfile = (values) => {
+        //имя
+        if (values.newFullName) {
+            profile.fullName = values.newFullName;
+        }
+        //в поиска работы да/нет
+        if (values.newSearchJob) {
+            profile.lookingForAJob = values.newSearchJob;
+        }
+        //обо мне
+        if (values.newAboutMe) {
+            profile.AboutMe = values.newAboutMe;
+        }
+        //о работе
+        if (values.newJobDesc) {
+            profile.LookingForAJobDescription = values.newJobDesc;
+        }
+        //контакты
+        if (values.contacts) {
+            profile.contacts = values.contacts;
+            setEditModeContact(false);
+        }
+        props.saveProfile(profile);
+        //закрытие формы редактирования
+        //имя
+        // if (values.newFullName) {
+        //     setEditModeFullName(false);
+        // }
+        // //в поиска работы да/нет
+        // if (values.newSearchJob) {
+        //     setEditModeSearchJob(false);
+        // }
+        // //обо мне
+        // if (values.newAboutMe) {
+        //     setEditModeMe(false);
+        // }
+        // //о работе
+        // if (values.newJobDesc) {
+        //     setEditModeJobDesc(false);
+        // }
+        // //контакты
+        // if (values.contacts) {
+        //     setEditModeContact(false);
+        // }
     }
 
     if (!props.profile) return <Preloader />
@@ -128,7 +166,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={styles.profileInfo}>
             <div className={styles.left}>
-                <AvatarImage imgSrc={props.profile.photos.large} />
+                <AvatarImage imgSrc={props.profile.photos.large} isOwner={props.isOwner} />
             </div>
             {props.isAuth && props.isOwner &&
                 <div>
@@ -148,11 +186,11 @@ const ProfileInfo = (props) => {
                         <span className={styles.editButton} onClick={deactivateEditModeFullName}><CreateIcon /></span>
                     }
                     {editModeFullName &&
-                        <AddFullNameReduxForm onSubmit={updateFullName} deactivateEditModeFullName={deactivateEditModeFullName} />
+                        <AddFullNameReduxForm onSubmit={updateProfile} deactivateEditModeFullName={deactivateEditModeFullName} />
                     }
                 </div>
                 <div className={styles.text + " " + styles.border}>
-                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} isAuth={props.isAuth} />
+                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} isAuth={props.isAuth} isOwner={props.isOwner} />
                 </div>
                 <div className={styles.text + " " + styles.border}>
                     <b>О себе: </b>{aboutMe ? aboutMe : "отсутствует"}
@@ -163,7 +201,7 @@ const ProfileInfo = (props) => {
                         <span className={styles.editButton} onClick={deactivateEditModeMe}><CreateIcon /></span>
                     }
                     {editModeMe &&
-                        <AddAboutMeReduxForm onSubmit={updateMe} deactivateEditModeMe={deactivateEditModeMe} />
+                        <AddAboutMeReduxForm onSubmit={updateProfile} deactivateEditModeMe={deactivateEditModeMe} />
                     }
                 </div>
                 <div className={styles.border}>
@@ -190,7 +228,7 @@ const ProfileInfo = (props) => {
 
                     {editModeContact && props.isOwner &&
                         Object.keys(props.profile.contacts).map(key => {
-                            return <AddContactForm onSubmit={updateContacts} key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+                            return <AddContactForm onSubmit={updateProfile} key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
                         })
                     }
                     {viewModeContact &&
@@ -208,7 +246,7 @@ const ProfileInfo = (props) => {
                         <span className={styles.editButton} onClick={deactivateEditModeSearchJob}><CreateIcon /></span>
                     }
                     {editModeSearchJob &&
-                        <AddSearchJobReduxForm onSubmit={updateSearchJob} deactivateEditModeSearchJob={deactivateEditModeSearchJob} />
+                        <AddSearchJobReduxForm onSubmit={updateProfile} deactivateEditModeSearchJob={deactivateEditModeSearchJob} />
                     }
                 </div>
                 <div className={styles.text + " " + styles.border}>
@@ -220,11 +258,20 @@ const ProfileInfo = (props) => {
                         <span className={styles.editButton} onClick={deactivateEditModeJobDesc}><CreateIcon /></span>
                     }
                     {editModeJobDesc &&
-                        <AddJobDescReduxForm onSubmit={updateJobDesc} deactivateEditModeJobDesc={deactivateEditModeJobDesc} />
+                        <AddJobDescReduxForm onSubmit={updateProfile} deactivateEditModeJobDesc={deactivateEditModeJobDesc} />
                     }
                 </div>
             </div>
         </div>
+    )
+}
+//initialValues={props.profile.fullName}
+const FullNameForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={FormControl} controlType="input" autoFocus={true} name={"newFullName"} placeholder={"Введите текст..."} validate={[maxLength]} />
+            <button>Сохранить</button>
+        </form>
     )
 }
 
@@ -236,24 +283,19 @@ const ContactView = ({ contactTitle, contactValue }) => {
     )
 }
 
-
 const ContactForm = (props) => {
     return (
         <div className={styles.contact}>
             <form onSubmit={props.handleSubmit}>
-                <b>{props.contactTitle}</b>: <Field component={FormControl} controlType="input" autoFocus={true} name={"newContact"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
+                <b>{props.contactTitle}</b>: <Field component={FormControl} controlType="input" name={"contacts." + props.contactTitle} placeholder={"Введите текст..."} />
                 <button>Сохранить</button>
+                {/* Вывод ошибки */}
+                {props.error && <div className={styles.formError}>
+                    {props.error}
+                </div>
+                }
             </form>
         </div>
-    )
-}
-
-const FullNameForm = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <Field component={FormControl} controlType="input" autoFocus={true} name={"newFullName"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
-            <button>Сохранить</button>
-        </form>
     )
 }
 
@@ -262,7 +304,8 @@ const searchJobForm = (props) => {
         <form onSubmit={props.handleSubmit}>
             {/* <Field component={FormControl} controlType="checkbox" autoFocus={true} name={"newSearchJob"} onBlur={props.deactivateEditModeSearchJob} placeholder={"Введите текст..."} />
             <button>Сохранить</button> */}
-            <Field type={"checkbox"} component={"input"} name={"searchJob"} />
+            <Field type={"checkbox"} component={"input"} name={"newSearchJob"} />
+            <button>Сохранить</button>
         </form>
     )
 }
@@ -270,7 +313,7 @@ const searchJobForm = (props) => {
 const jobDescForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={FormControl} controlType="input" autoFocus={true} name={"newJobDesc"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
+            <Field component={FormControl} controlType="input" autoFocus={true} name={"newJobDesc"} placeholder={"Введите текст..."} validate={[maxLength]} />
             <button>Сохранить</button>
         </form>
     )
@@ -279,7 +322,7 @@ const jobDescForm = (props) => {
 const aboutMeForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={FormControl} controlType="textarea" cols={"30"} autoFocus={true} name={"newAboutMe"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
+            <Field component={FormControl} controlType="textarea" cols={"30"} autoFocus={true} name={"newAboutMe"} placeholder={"Введите текст..."} validate={[maxLength]} />
             <button>Сохранить</button>
         </form>
     )

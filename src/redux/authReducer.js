@@ -49,7 +49,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_US
 
 //react-thunk
 export const getAuthUserData = () => async (dispatch) => {
-    let response = await authAPI.getMe();
+    const response = await authAPI.getMe();
 
     if (response.data.resultCode === 0) { //если залогинены
         let { id, email, login } = response.data.data;
@@ -58,19 +58,18 @@ export const getAuthUserData = () => async (dispatch) => {
 }
 
 export const authUser = (email, password, rememberMe) => async (dispatch) => {
-    let data = await authAPI.login(email, password, rememberMe);
+    const data = await authAPI.login(email, password, rememberMe);
 
     if (data.resultCode === 0) { //если нет ошибок
         dispatch(getAuthUserData()); //запрос логина с сервера
     } else {
-        let error_message = data.messages.length > 0 ? data.messages[0] : "Произошла неведомая ошибка";
+        const error_message = data.messages.length > 0 ? data.messages[0] : "Произошла неведомая ошибка";
         dispatch(stopSubmit("login", { _error: error_message })); //параметры: название формы, название ошибки
     }
 }
 
 export const logout = () => async (dispatch) => {
-    let data = await authAPI.logout();
-
+    const data = await authAPI.logout();
     if (data.resultCode === 0) { //если нет ошибок
         dispatch(setAuthUserData(null, null, null, false));
     }

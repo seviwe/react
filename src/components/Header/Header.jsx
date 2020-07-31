@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -19,6 +19,7 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange } from '@material-ui/core/colors';
 import { Icon } from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -93,6 +94,35 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const StyledBadge = withStyles((theme) => ({
+	badge: {
+		backgroundColor: '#44b700',
+		color: '#44b700',
+		boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+		'&::after': {
+			position: 'absolute',
+			top: 0,
+			left: 0,
+			width: '100%',
+			height: '100%',
+			borderRadius: '50%',
+			animation: '$ripple 1.2s infinite ease-in-out',
+			border: '1px solid currentColor',
+			content: '""',
+		},
+	},
+	'@keyframes ripple': {
+		'0%': {
+			transform: 'scale(.8)',
+			opacity: 1,
+		},
+		'100%': {
+			transform: 'scale(2.4)',
+			opacity: 0,
+		},
+	},
+}))(Badge);
+
 export default function Header(props) {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -121,6 +151,7 @@ export default function Header(props) {
 	//Выйти из системы
 	const onLogout = () => {
 		props.logout();
+		//if (!props.userId) props.history.push("/profile"); //редирект на страницу авторизации
 	}
 
 	const menuId = 'primary-search-account-menu';
@@ -136,7 +167,7 @@ export default function Header(props) {
 		>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/profile" className={styles.noneHref}>Профиль</a></MenuItem>
 			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/settings" className={styles.noneHref}>Настройки</a></MenuItem>
-			<MenuItem onClick={onLogout}><a href="" className={styles.noneHref}>Выйти</a></MenuItem>
+			{/* <MenuItem onClick={onLogout}><a href="" className={styles.noneHref}>Выйти</a></MenuItem> */}
 		</Menu>
 	);
 
@@ -217,12 +248,12 @@ export default function Header(props) {
 							? <div>
 								<div className={classes.sectionDesktop}>
 									<IconButton aria-label="show 2 new mails" color="inherit">
-										<Badge badgeContent={2} color="secondary">
+										<Badge badgeContent={0} color="secondary">
 											<MailIcon />
 										</Badge>
 									</IconButton>
 									<IconButton aria-label="show 1 new notifications" color="inherit">
-										<Badge badgeContent={1} color="secondary">
+										<Badge badgeContent={0} color="secondary">
 											<NotificationsIcon />
 										</Badge>
 									</IconButton>
@@ -236,8 +267,23 @@ export default function Header(props) {
 									>
 										<span className={styles.loginName}>{props.login}</span>
 										<div>
-											<Avatar>VA</Avatar>
+											{!props.avaPhoto && <Avatar>VA</Avatar>}
+											{props.avaPhoto &&
+												<StyledBadge
+													overlap="circle"
+													anchorOrigin={{
+														vertical: 'bottom',
+														horizontal: 'right',
+													}}
+													variant="dot"
+												>
+													<Avatar alt="avatar" src={props.avaPhoto} />
+												</StyledBadge>
+											}
 										</div>
+									</IconButton>
+									<IconButton color="default" aria-label="upload picture" component="span" onClick={onLogout}>
+										<ExitToAppIcon />
 									</IconButton>
 								</div>
 								<div className={classes.sectionMobile}>
