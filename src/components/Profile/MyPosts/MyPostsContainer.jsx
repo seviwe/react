@@ -1,7 +1,7 @@
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 import { addPost, setLikePost, setDislikePost, unsetLikePost, unsetDislikePost, deletePost } from '../../../redux/profileReducer';
-import { getPosts, getAvatar } from '../../../selectors/profileSelectors';
+import { getPosts, getAvatar, getProfile } from '../../../selectors/profileSelectors';
 import { getLogin, getIsAuth } from '../../../selectors/authSelectors';
 
 let mapStateToProps = (state) => {
@@ -10,6 +10,7 @@ let mapStateToProps = (state) => {
 		isAuth: getIsAuth(state),
 		login: getLogin(state),
 		avaPhoto: getAvatar(state),
+		profile: getProfile(state),
 	}
 }
 

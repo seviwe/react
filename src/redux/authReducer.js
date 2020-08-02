@@ -24,7 +24,6 @@ export const authReducer = (state = initialState, action) => {
                 //isAuth: true
             };
         }
-
         // case AUTH_USER: {
         //     return {
         //         ...state,
@@ -50,7 +49,6 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_US
 //react-thunk
 export const getAuthUserData = () => async (dispatch) => {
     const response = await authAPI.getMe();
-
     if (response.data.resultCode === 0) { //если залогинены
         let { id, email, login } = response.data.data;
         dispatch(setAuthUserData(id, email, login, true));
@@ -59,7 +57,6 @@ export const getAuthUserData = () => async (dispatch) => {
 
 export const authUser = (email, password, rememberMe) => async (dispatch) => {
     const data = await authAPI.login(email, password, rememberMe);
-
     if (data.resultCode === 0) { //если нет ошибок
         dispatch(getAuthUserData()); //запрос логина с сервера
     } else {

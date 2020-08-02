@@ -17,7 +17,7 @@ import { IconButton } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { reduxForm, Field } from 'redux-form';
-import { required, maxLengthCreator } from "../../../utils/validators/validators";
+import { maxLengthCreator } from "../../../utils/validators/validators";
 import { FormControl, createField } from '../../common/FormsControls/FormsControls';
 import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 import VisibilityIconOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
@@ -25,9 +25,7 @@ import VisibilityIconOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 const maxLength = maxLengthCreator(50);
 
 const useStyles = makeStyles((theme) => ({
-    input: {
-        display: 'none',
-    },
+    input: { display: 'none', },
 }));
 
 const ProfileInfo = (props) => {
@@ -98,70 +96,57 @@ const ProfileInfo = (props) => {
             LookingForAJobDescription: props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : "отсутствует",
             fullName: props.profile.fullName,
             AboutMe: props.profile.aboutMe ? props.profile.aboutMe : "отсутствует",
-            contacts: {}
+            contacts: {
+                github: props.profile.contacts.github ? props.profile.contacts.github : null,
+                vk: props.profile.contacts.vk ? props.profile.contacts.vk : null,
+                facebook: props.profile.contacts.facebook ? props.profile.contacts.facebook : null,
+                instagram: props.profile.contacts.instagram ? props.profile.contacts.instagram : null,
+                twitter: props.profile.contacts.twitter ? props.profile.contacts.twitter : null,
+                website: props.profile.contacts.website ? props.profile.contacts.website : null,
+                youtube: props.profile.contacts.youtube ? props.profile.contacts.youtube : null,
+                mainLink: props.profile.contacts.mainLink ? props.profile.contacts.mainLink : null
+            }
         }
     }
 
     //обновление информации
     const updateProfile = (values) => {
         //имя
-        if (values.newFullName) {
-            profile.fullName = values.newFullName;
-        }
+        if (values.newFullName) profile.fullName = values.newFullName;
         //в поиска работы да/нет
-        if (values.newSearchJob) {
-            profile.lookingForAJob = values.newSearchJob;
-        }
+        if (values.newSearchJob) profile.lookingForAJob = values.newSearchJob;
         //обо мне
-        if (values.newAboutMe) {
-            profile.AboutMe = values.newAboutMe;
-        }
+        if (values.newAboutMe) profile.AboutMe = values.newAboutMe;
         //о работе
-        if (values.newJobDesc) {
-            profile.LookingForAJobDescription = values.newJobDesc;
-        }
+        if (values.newJobDesc) profile.LookingForAJobDescription = values.newJobDesc;
         //контакты
         if (values.contacts) {
-            profile.contacts = values.contacts;
-            setEditModeContact(false);
+            profile.contacts = {
+                github: values.contacts.github ? values.contacts.github : props.profile.contacts.github,
+                vk: values.contacts.vk ? values.contacts.vk : props.profile.contacts.vk,
+                facebook: values.contacts.facebook ? values.contacts.facebook : props.profile.contacts.facebook,
+                instagram: values.contacts.instagram ? values.contacts.instagram : props.profile.contacts.instagram,
+                twitter: values.contacts.twitter ? values.contacts.twitter : props.profile.contacts.twitter,
+                website: values.contacts.website ? values.contacts.website : props.profile.contacts.website,
+                youtube: values.contacts.youtube ? values.contacts.youtube : props.profile.contacts.youtube,
+                mainLink: values.contacts.mainLink ? values.contacts.mainLink : props.profile.contacts.mainLink,
+            }
         }
         props.saveProfile(profile);
         //закрытие формы редактирования
         //имя
-        // if (values.newFullName) {
-        //     setEditModeFullName(false);
-        // }
-        // //в поиска работы да/нет
-        // if (values.newSearchJob) {
-        //     setEditModeSearchJob(false);
-        // }
-        // //обо мне
-        // if (values.newAboutMe) {
-        //     setEditModeMe(false);
-        // }
-        // //о работе
-        // if (values.newJobDesc) {
-        //     setEditModeJobDesc(false);
-        // }
-        // //контакты
-        // if (values.contacts) {
-        //     setEditModeContact(false);
-        // }
+        if (values.newFullName) setEditModeFullName(false);
+        //в поиска работы да/нет
+        if (values.newSearchJob) setEditModeSearchJob(false);
+        //обо мне
+        if (values.newAboutMe) setEditModeMe(false);
+        //о работе
+        if (values.newJobDesc) setEditModeJobDesc(false);
+        //контакты
+        if (values.contacts) setEditModeContact(false);
     }
 
     if (!props.profile) return <Preloader />
-
-    //поиск работы
-    let searchJob = "нет";
-    if (props.profile.lookingForAJob) searchJob = "да";
-
-    //о работе
-    let jobDesc = ""
-    if (props.profile.lookingForAJobDescription) jobDesc = props.profile.lookingForAJobDescription;
-
-    //о себе
-    let aboutMe = "";
-    if (props.profile.aboutMe) aboutMe = props.profile.aboutMe;
 
     return (
         <div className={styles.profileInfo}>
@@ -193,7 +178,7 @@ const ProfileInfo = (props) => {
                     <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} isAuth={props.isAuth} isOwner={props.isOwner} />
                 </div>
                 <div className={styles.text + " " + styles.border}>
-                    <b>О себе: </b>{aboutMe ? aboutMe : "отсутствует"}
+                    <b>О себе: </b>{props.profile.aboutMe ? props.profile.aboutMe : "отсутствует"}
                     {props.isOwner && !editModeMe &&
                         <span className={styles.editButton} onClick={onEditMe}><CreateOutlinedIcon /></span>
                     }
@@ -238,7 +223,7 @@ const ProfileInfo = (props) => {
                     }
                 </div>
                 <div className={styles.text + " " + styles.border}>
-                    <b>В поиске работы:</b> {searchJob}
+                    <b>В поиске работы:</b> {props.profile.lookingForAJob ? "да" : "нет"}
                     {props.isOwner && !editModeSearchJob &&
                         <span className={styles.editButton} onClick={onEditSearchJob}><CreateOutlinedIcon /></span>
                     }
@@ -250,7 +235,7 @@ const ProfileInfo = (props) => {
                     }
                 </div>
                 <div className={styles.text + " " + styles.border}>
-                    <b>Мои навыки: </b>{jobDesc ? jobDesc : "отсутствует"}
+                    <b>Мои навыки: </b>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : "отсутствует"}
                     {props.isOwner && !editModeJobDesc &&
                         <span className={styles.editButton} onClick={onEditJobDesc}><CreateOutlinedIcon /></span>
                     }
@@ -302,8 +287,6 @@ const ContactForm = (props) => {
 const searchJobForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            {/* <Field component={FormControl} controlType="checkbox" autoFocus={true} name={"newSearchJob"} onBlur={props.deactivateEditModeSearchJob} placeholder={"Введите текст..."} />
-            <button>Сохранить</button> */}
             <Field type={"checkbox"} component={"input"} name={"newSearchJob"} />
             <button>Сохранить</button>
         </form>

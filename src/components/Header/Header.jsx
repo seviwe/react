@@ -265,7 +265,9 @@ export default function Header(props) {
 										onClick={handleProfileMenuOpen}
 										color="inherit"
 									>
-										<span className={styles.loginName}>{props.login}</span>
+										{props.profile &&
+											<span className={styles.loginName}>{props.login}</span>
+										}
 										<div>
 											{!props.avaPhoto && <Avatar>VA</Avatar>}
 											{props.avaPhoto &&
