@@ -71,8 +71,8 @@ export const getCaptchaUrl = () => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-    const data = await authAPI.logout();
-    if (data.resultCode === 0) { //если нет ошибок
+    const response = await authAPI.logout();
+    if (response.data.resultCode === 0) { //если нет ошибок
         dispatch(setAuthUserData(null, null, null, false));
     }
 }

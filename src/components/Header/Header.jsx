@@ -20,6 +20,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { deepOrange } from '@material-ui/core/colors';
 import { Icon } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -123,7 +124,7 @@ const StyledBadge = withStyles((theme) => ({
 	},
 }))(Badge);
 
-export default function Header(props) {
+const Header = (props) => {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -151,6 +152,7 @@ export default function Header(props) {
 	//Выход из системы
 	const onLogout = () => {
 		props.logout();
+		//return <Redirect to={"/login"} />
 	}
 
 	const menuId = 'primary-search-account-menu';
@@ -302,7 +304,6 @@ export default function Header(props) {
 							: <Button variant="contained" href="/login">Авторизация</Button>
 						}
 					</div>
-
 				</Toolbar>
 			</AppBar>
 			{renderMobileMenu}
@@ -310,3 +311,5 @@ export default function Header(props) {
 		</div>
 	);
 }
+
+export default Header;

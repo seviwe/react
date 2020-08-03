@@ -12,7 +12,7 @@ const ProfileStatus = (props) => {
     }, [props.status]); //[props.status] - зависимость от статуса, тогда происходит синхронизация, когда пропсы приходят 
 
     const activateEditMode = () => {
-        if (props.isOwner) {
+        if (props.isOwner && props.isAuth) {
             setEditMode(true);
         }
     }

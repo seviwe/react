@@ -62,7 +62,7 @@ const Post = (props) => {
 					{props.profile &&
 						<span>{props.profile.fullName} добавил(а) новый пост:</span>
 					}
-					{props.isOwner &&
+					{props.isOwner && props.isAuth &&
 						<span onClick={() => { props.deletePost(props.id); }} className={styles.delPost}><HighlightOffIcon fontSize="small" /></span>
 					}
 				</div>

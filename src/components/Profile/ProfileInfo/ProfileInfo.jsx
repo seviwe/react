@@ -164,13 +164,13 @@ const ProfileInfo = (props) => {
             <div className={styles.right}>
                 <div className={styles.text + " " + styles.border}>
                     <b>{props.profile.fullName}</b>
-                    {props.isOwner && !editModeFullName &&
+                    {props.isOwner && !editModeFullName && props.isAuth &&
                         <span className={styles.editButton} onClick={onEditFullName}><CreateOutlinedIcon /></span>
                     }
-                    {props.isOwner && editModeFullName &&
+                    {props.isOwner && editModeFullName && props.isAuth &&
                         <span className={styles.editButton} onClick={deactivateEditModeFullName}><CreateIcon /></span>
                     }
-                    {editModeFullName &&
+                    {editModeFullName && props.isAuth &&
                         <AddFullNameReduxForm onSubmit={updateProfile} deactivateEditModeFullName={deactivateEditModeFullName} />
                     }
                 </div>
@@ -179,13 +179,13 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={styles.text + " " + styles.border}>
                     <b>О себе: </b>{props.profile.aboutMe ? props.profile.aboutMe : "отсутствует"}
-                    {props.isOwner && !editModeMe &&
+                    {props.isOwner && !editModeMe && props.isAuth &&
                         <span className={styles.editButton} onClick={onEditMe}><CreateOutlinedIcon /></span>
                     }
-                    {props.isOwner && editModeMe &&
+                    {props.isOwner && editModeMe && props.isAuth &&
                         <span className={styles.editButton} onClick={deactivateEditModeMe}><CreateIcon /></span>
                     }
-                    {editModeMe &&
+                    {editModeMe && props.isAuth &&
                         <AddAboutMeReduxForm onSubmit={updateProfile} deactivateEditModeMe={deactivateEditModeMe} />
                     }
                 </div>
@@ -198,10 +198,10 @@ const ProfileInfo = (props) => {
                     <a href={props.profile.contacts.instagram} target="_blank"><InstagramIcon fontSize="default" color="primary" /></a>
                     <a href={props.profile.contacts.youtube} target="_blank"><YouTubeIcon fontSize="default" color="primary" /></a>
                     <a href={props.profile.contacts.github} target="_blank"><GitHubIcon fontSize="default" color="primary" /></a> */}
-                    {props.isOwner && !editModeContact &&
+                    {props.isOwner && !editModeContact && props.isAuth &&
                         <span className={styles.editButton} onClick={onEditContacts}><CreateOutlinedIcon /></span>
                     }
-                    {props.isOwner && editModeContact &&
+                    {props.isOwner && editModeContact && props.isAuth &&
                         <span className={styles.editButton} onClick={deactivateEditModeContact}><CreateIcon /></span>
                     }
                     {!viewModeContact &&
@@ -211,7 +211,7 @@ const ProfileInfo = (props) => {
                         <span className={styles.editButton} onClick={deactivateEditModeContact}><VisibilityIcon /></span>
                     }
 
-                    {editModeContact && props.isOwner &&
+                    {editModeContact && props.isOwner && props.isAuth &&
                         Object.keys(props.profile.contacts).map(key => {
                             return <AddContactForm onSubmit={updateProfile} key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
                         })
@@ -224,25 +224,25 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={styles.text + " " + styles.border}>
                     <b>В поиске работы:</b> {props.profile.lookingForAJob ? "да" : "нет"}
-                    {props.isOwner && !editModeSearchJob &&
+                    {props.isOwner && !editModeSearchJob && props.isAuth &&
                         <span className={styles.editButton} onClick={onEditSearchJob}><CreateOutlinedIcon /></span>
                     }
-                    {props.isOwner && editModeSearchJob &&
+                    {props.isOwner && editModeSearchJob && props.isAuth &&
                         <span className={styles.editButton} onClick={deactivateEditModeSearchJob}><CreateIcon /></span>
                     }
-                    {editModeSearchJob &&
+                    {editModeSearchJob && props.isAuth &&
                         <AddSearchJobReduxForm onSubmit={updateProfile} deactivateEditModeSearchJob={deactivateEditModeSearchJob} />
                     }
                 </div>
                 <div className={styles.text + " " + styles.border}>
                     <b>Мои навыки: </b>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : "отсутствует"}
-                    {props.isOwner && !editModeJobDesc &&
+                    {props.isOwner && !editModeJobDesc && props.isAuth &&
                         <span className={styles.editButton} onClick={onEditJobDesc}><CreateOutlinedIcon /></span>
                     }
-                    {props.isOwner && editModeJobDesc &&
+                    {props.isOwner && editModeJobDesc && props.isAuth &&
                         <span className={styles.editButton} onClick={deactivateEditModeJobDesc}><CreateIcon /></span>
                     }
-                    {editModeJobDesc &&
+                    {editModeJobDesc && props.isAuth &&
                         <AddJobDescReduxForm onSubmit={updateProfile} deactivateEditModeJobDesc={deactivateEditModeJobDesc} />
                     }
                 </div>

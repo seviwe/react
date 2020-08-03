@@ -16,7 +16,7 @@ const MyPosts = (props) => {
 		[...props.posts]
 			.reverse()
 			.map(p => <Suspense key={p.id} fallback={<Preloader />}>
-				<Post key={p.id} id={p.id} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} deletePost={props.deletePost} isOwner={props.isOwner} avaPhoto={props.avaPhoto} profile={props.profile} /></Suspense>);
+				<Post key={p.id} id={p.id} isAuth={props.isAuth} message={p.message} countLike={p.countLike} countDislike={p.countDislike} setLikePost={props.setLikePost} setDislikePost={props.setDislikePost} userId={p.userId} setLike={p.setLike} setDislike={p.setDislike} unsetLikePost={props.unsetLikePost} unsetDislikePost={props.unsetDislikePost} login={props.login} deletePost={props.deletePost} isOwner={props.isOwner} avaPhoto={props.avaPhoto} profile={props.profile} /></Suspense>);
 
 	let addNewPost = (values) => {
 		props.addPost(values.newPostBody);
