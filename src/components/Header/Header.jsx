@@ -166,8 +166,12 @@ const Header = (props) => {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/profile" className={styles.noneHref}>Профиль</a></MenuItem>
-			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/settings" className={styles.noneHref}>Настройки</a></MenuItem>
+			<MenuItem onClick={handleMenuClose}><a className={styles.noneHref}>Item 1</a></MenuItem>
+			<MenuItem onClick={handleMenuClose}><a className={styles.noneHref}>Item 2</a></MenuItem>
+			<MenuItem onClick={handleMenuClose}><a className={styles.noneHref}>Item 3</a></MenuItem>
+			<MenuItem onClick={handleMenuClose}><a className={styles.noneHref}>Item 4</a></MenuItem>
+			{/* <MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/profile" className={styles.noneHref}>Профиль</a></MenuItem>
+			<MenuItem onClick={handleMenuClose}><a href="http://localhost:3000/settings" className={styles.noneHref}>Настройки</a></MenuItem> */}
 			{/* <MenuItem onClick={onLogout}><a href="" className={styles.noneHref}>Выйти</a></MenuItem> */}
 		</Menu>
 	);

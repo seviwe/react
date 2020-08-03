@@ -47,6 +47,11 @@ const LoginForm = (props) => {
 			<div>
 				<button>Войти</button>
 			</div>
+			<div>
+				<span><h1>Тестовые данные для тестирования соц сети:</h1></span>
+				<span><b>Email:</b> free@samuraijs.com</span><br/>
+				<span><b>Password:</b> free</span>
+			</div>
 		</form>
 	)
 }
