@@ -1,11 +1,12 @@
 import { authUser } from '../../redux/authReducer';
 import Login from './Login';
 import { connect } from 'react-redux';
-import { getIsAuth } from './../../selectors/authSelectors';
+import { getIsAuth, getCaptchaUrl } from './../../selectors/authSelectors';
 
 let mapStateToProps = (state) => {
 	return {
-		isAuth: getIsAuth(state)
+		isAuth: getIsAuth(state),
+		captchaUrl: getCaptchaUrl(state),
 	}
 }
 

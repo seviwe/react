@@ -52,7 +52,7 @@ export const profileAPI = {
     updateStatusUser(status) {
         return instance.put("profile/status", { status: status });
     },
-    //функция обновления статуса пользователя
+    //функция загрузки фото на аватарку пользователя
     savePhoto(photoFile) {
         const formData = new FormData();
         formData.append("image", photoFile);
@@ -73,14 +73,28 @@ export const authAPI = {
     getMe() {
         return instance.get("auth/me");
     },
+    //функция получения аватарки залогиненного пользователя
+    getPhotoAuthUser(idUser) {
+        return instance.get("profile/" + idUser)
+            .then(response => {
+                return response.data.photos.small;
+            });
+    },
     //функция авторизации пользователя
-    login(email, password, rememberMe = false) {
-        return instance.post("auth/login", { email, password, rememberMe })
+    login(email, password, rememberMe = false, captcha = null) {
+        return instance.post("auth/login", { email, password, rememberMe, captcha })
             .then(response => {
                 return response.data;
             });
     },
     logout() {
         return instance.delete("auth/login");
+    },
+};
+
+export const securityAPI = {
+    //функция запроса каптчи с сервера
+    getCaptchaUrl() {
+        return instance.get("security/get-captcha-url");
     },
 };

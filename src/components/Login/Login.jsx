@@ -8,19 +8,17 @@ import { Redirect } from 'react-router-dom';
 
 const maxLength = maxLengthCreator(30);
 
-const Login = ({ isAuth, authUser }) => {
+const Login = ({ authUser, isAuth, captchaUrl }) => {
 	let AuthNewUser = (values) => {
-		authUser(values.login, values.password, values.rememberMe);
+		authUser(values.login, values.password, values.rememberMe, values.captcha);
 	}
-
-	if (isAuth) { //если пользователь залогинен
-		return <Redirect to={"/profile"} />
-	}
+	//если пользователь залогинен
+	if (isAuth) return <Redirect to={"/profile"} />
 
 	return (
 		<div>
 			<h1>Авторизация</h1>
-			<LoginReduxForm onSubmit={AuthNewUser} />
+			<LoginReduxForm onSubmit={AuthNewUser} captchaUrl={captchaUrl} />
 		</div>
 	)
 }
@@ -39,6 +37,8 @@ const LoginForm = (props) => {
 			<div>
 				<Field type={"checkbox"} component={"input"} name={"rememberMe"} /> Запомнить меня
 			</div>
+			{props.captchaUrl && <img src={props.captchaUrl} />}
+			{props.captchaUrl && createField("Введите капчу", "captcha", [required], FormControl, "input", "", props, "")}
 			{/* Вывод ошибки при неправильной авторизации */}
 			{props.error && <div className={styles.formError}>
 				{props.error}

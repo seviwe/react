@@ -148,10 +148,9 @@ export default function Header(props) {
 		setMobileMoreAnchorEl(event.currentTarget);
 	};
 
-	//Выйти из системы
+	//Выход из системы
 	const onLogout = () => {
 		props.logout();
-		//if (!props.userId) props.history.push("/profile"); //редирект на страницу авторизации
 	}
 
 	const menuId = 'primary-search-account-menu';
@@ -269,8 +268,8 @@ export default function Header(props) {
 											<span className={styles.loginName}>{props.login}</span>
 										}
 										<div>
-											{!props.avaPhoto && <Avatar>VA</Avatar>}
-											{props.avaPhoto &&
+											{!props.photo && <Avatar>VA</Avatar>}
+											{props.photo &&
 												<StyledBadge
 													overlap="circle"
 													anchorOrigin={{
@@ -279,7 +278,7 @@ export default function Header(props) {
 													}}
 													variant="dot"
 												>
-													<Avatar alt="avatar" src={props.avaPhoto} />
+													<Avatar alt="avatar" src={props.photo} />
 												</StyledBadge>
 											}
 										</div>

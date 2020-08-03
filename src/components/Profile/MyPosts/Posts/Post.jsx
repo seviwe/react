@@ -8,6 +8,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import noneAvatar from '../../../../assets/img/noneAvatar.png';
 
 const StyledBadge = withStyles((theme) => ({
 	badge: {
@@ -42,7 +43,7 @@ const Post = (props) => {
 	return (
 		<div className={styles.item}>
 			<div>
-				{!props.avaPhoto && <Avatar>VA</Avatar>}
+				{!props.avaPhoto && <Avatar alt="avatar" src={noneAvatar} />}
 				{props.avaPhoto &&
 					<StyledBadge
 						overlap="circle"

@@ -16,7 +16,7 @@ let Users = (props) => {
         <div>
             <div className={styles.panel}>
                 Поиск пользователей...
-            </div>
+                    </div>
             <div className={styles.listUsers}>
                 {usersElement}
             </div>

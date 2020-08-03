@@ -17,7 +17,7 @@ const ProfileContainer = (props) => {
         }
         props.getUserProfile(userId);
         props.getUserStatus(userId);
-    }, [])
+    }, [props.match.params.userId])
 
     return (
         <Profile {...props} isOwner={!props.match.params.userId} savePhoto={props.savePhoto} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} isAuth={props.isAuth} saveProfile={props.saveProfile} />
