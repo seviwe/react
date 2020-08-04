@@ -18,7 +18,7 @@
 
 .messages {
     display: grid;
-    grid-template-rows: 12fr 3fr;
+    grid-template-rows: 8fr 3fr;
 }
 
 .sendMessage{

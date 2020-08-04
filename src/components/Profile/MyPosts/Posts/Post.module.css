@@ -38,3 +38,7 @@ hr {
 .delPost{
     float: right;
 }
+
+.bottomLikeDislike {
+    padding-bottom: 10px;
+}

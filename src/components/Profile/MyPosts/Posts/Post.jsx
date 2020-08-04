@@ -7,7 +7,7 @@ import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Avatar from '@material-ui/core/Avatar';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import noneAvatar from '../../../../assets/img/noneAvatar.png';
 
 const StyledBadge = withStyles((theme) => ({
@@ -57,13 +57,13 @@ const Post = (props) => {
 					</StyledBadge>
 				}
 			</div>
-			<div>
+			<div className={styles.bottomLikeDislike}>
 				<div className={styles.postMessage}>
 					{props.profile &&
-						<span>{props.profile.fullName} добавил(а) новый пост:</span>
+						<span><b>{props.profile.fullName}</b> добавил(а) новый пост:</span>
 					}
 					{props.isOwner && props.isAuth &&
-						<span onClick={() => { props.deletePost(props.id); }} className={styles.delPost}><HighlightOffIcon fontSize="small" /></span>
+						<span onClick={() => props.deletePost(props.id)} className={styles.delPost}><HighlightOffIcon fontSize="small" /></span>
 					}
 				</div>
 				<div className={styles.postMessage}>
@@ -129,7 +129,6 @@ const Post = (props) => {
 					}
 				</div>
 			</div>
-			<br />
 		</div>
 	)
 }

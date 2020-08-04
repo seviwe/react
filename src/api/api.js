@@ -36,17 +36,21 @@ export const usersAPI = {
 export const profileAPI = {
     //функция запроса с сервера профиля пользователя
     getProfileUser(idUser) {
-        return instance.get("profile/" + idUser)
-            .then(response => {
-                return response.data;
-            });
+        if (idUser) {
+            return instance.get("profile/" + idUser)
+                .then(response => {
+                    return response.data;
+                });
+        }
     },
     //функция запроса с сервера статуса пользователя
     getStatusUser(idUser) {
-        return instance.get("profile/status/" + idUser)
-            .then(response => {
-                return response.data;
-            });
+        if (idUser) {
+            return instance.get("profile/status/" + idUser)
+                .then(response => {
+                    return response.data;
+                });
+        }
     },
     //функция обновления статуса пользователя
     updateStatusUser(status) {

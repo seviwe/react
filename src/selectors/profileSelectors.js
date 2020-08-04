@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+//import { createSelector } from "reselect";
 
 export const getProfile = (state) => {
     return state.profilePage.profile;

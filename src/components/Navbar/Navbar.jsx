@@ -9,7 +9,7 @@ import RssFeedIcon from '@material-ui/icons/RssFeed';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-const Navbar = () => {
+const Navbar = (props) => {
 	return (
 		<nav className={styles.nav}>
 			<div className={styles.item}>

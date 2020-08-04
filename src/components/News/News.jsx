@@ -1,12 +1,14 @@
 import React from 'react';
-import styles from './News.module.css';
+//import styles from './News.module.css';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
-const News = () => {
+const News = (props) => {
 	return (
 		<div>
 			News
-      </div>
+		</div>
 	)
 }
 
-export default News;
+export default compose(withAuthRedirect)(News);

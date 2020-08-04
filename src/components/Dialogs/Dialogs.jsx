@@ -7,7 +7,7 @@ import Message from './Message/Message';
 //import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
-import { FormControl } from '../common/FormsControls/FormsControls';
+import { FormControl, renderTextField } from '../common/FormsControls/FormsControls';
 import { required, maxLengthCreator } from "../../utils/validators/validators";
 
 const maxLength = maxLengthCreator(300);
@@ -43,19 +43,10 @@ const Dialogs = (props) => {
 const DialogForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
-			{/* <TextField
-				id="outlined-multiline-static"
-				label="Введите сообщение..."
-				multiline
-				variant="outlined"
-				onChange={onMessageChange}
-				value={props.dialogsPage.newMessageText}
-				className={styles.textArea}
-			/> */}
 			{/* <Button variant="contained" size="medium" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>send</Icon>} onClick={onAddMessage}>Отправить</Button> */}
-
-			<Field component={FormControl} controlType="textarea" className={styles.textAreaWidthAuto} name={"newMessageBody"} placeholder={"Введите сообщение..."} validate={[required, maxLength]} />
-			<div>
+			{/* <Field component={FormControl} controlType="textarea" className={styles.textAreaWidthAuto} name={"newMessageBody"} placeholder={"Введите сообщение..."} validate={[required, maxLength]} /> */}
+			<Field component={renderTextField} className={styles.textAreaWidthAuto} name={"newMessageBody"} label={"Введите сообщение..."} validate={[required, maxLength]} />
+			<div >
 				{/* <Button variant="contained" size="medium" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>send</Icon>}>Отправить</Button> */}
 				<button>Отправить</button>
 			</div>
