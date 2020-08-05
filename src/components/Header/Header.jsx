@@ -305,7 +305,7 @@ const Header = (props) => {
 									</IconButton>
 								</div>
 							</div>
-							: <Button variant="contained" href="/login">Авторизация</Button>
+							: <Button variant="contained" href="/react/#/login">Авторизация</Button>
 						}
 					</div>
 				</Toolbar>
