@@ -1,11 +1,8 @@
 import React, { Suspense } from 'react';
 import styles from './MyPosts.module.css';
-//import Button from '@material-ui/core/Button';
-//import Icon from '@material-ui/core/Icon';
-//import TextField from '@material-ui/core/TextField';
 import { reduxForm, Field } from 'redux-form';
 import { required, maxLengthCreator } from "../../../utils/validators/validators";
-import { FormControl } from '../../common/FormsControls/FormsControls';
+import { FormControl, renderTextField } from '../../common/FormsControls/FormsControls';
 import Preloader from './../../common/Preloader/Preloader';
 const Post = React.lazy(() => import('./Posts/Post'));
 
@@ -39,18 +36,9 @@ const MyPosts = (props) => {
 const PostForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
-			{/* <TextField
-					id="outlined-multiline-static"
-					label="Введите пост..."
-					multiline
-					variant="outlined"
-					onChange={onPostChange}
-					value={props.newPostText}
-					className={styles.textArea}
-			/>
-			<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddPost}>Добавить</Button> */}
-			<Field component={FormControl} controlType="textarea" className={styles.textAreaWidthAuto} name={"newPostBody"} placeholder={"Введите текст..."} validate={[required, maxLength]} />
+			<Field component={renderTextField} className={styles.textAreaWidthAuto} name={"newPostBody"} label={"Введите текст..."} validate={[required, maxLength]} />
 			<div>
+				{/*<Button variant="contained" size="medium" color="primary" style={{marginTop: '10px'}} endIcon={<Icon>send</Icon>} onClick={onAddPost}>Добавить</Button> */}
 				<button>Отправить</button>
 			</div>
 		</form>

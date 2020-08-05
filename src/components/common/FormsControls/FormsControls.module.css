@@ -17,3 +17,7 @@
 .textField div > p {
     padding-top: 0px;
 }
+
+.textField {
+    padding-bottom: 10px;
+}

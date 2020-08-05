@@ -2,9 +2,6 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-//import Button from '@material-ui/core/Button';
-//import Icon from '@material-ui/core/Icon';
-//import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import { FormControl, renderTextField } from '../common/FormsControls/FormsControls';
@@ -43,7 +40,6 @@ const Dialogs = (props) => {
 const DialogForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
-			{/* <Button variant="contained" size="medium" color="primary" style={{ marginTop: '10px' }} endIcon={<Icon>send</Icon>} onClick={onAddMessage}>Отправить</Button> */}
 			{/* <Field component={FormControl} controlType="textarea" className={styles.textAreaWidthAuto} name={"newMessageBody"} placeholder={"Введите сообщение..."} validate={[required, maxLength]} /> */}
 			<Field component={renderTextField} className={styles.textAreaWidthAuto} name={"newMessageBody"} label={"Введите сообщение..."} validate={[required, maxLength]} />
 			<div >

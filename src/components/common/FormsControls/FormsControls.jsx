@@ -20,8 +20,7 @@ export const renderTextField = ({ input, label, meta: { touched, invalid, error 
     </div>
 );
 
-
-/*REST оператор. Пропсы будут содержать в себе всё, кроме input и meta*/
+/*Пропсы будут содержать в себе всё, кроме input и meta*/
 export let FormControl = ({ input, meta: { touched, error }, controlType, ...props }) => {
     const hasError = touched && error;
     return (
@@ -32,33 +31,9 @@ export let FormControl = ({ input, meta: { touched, error }, controlType, ...pro
     )
 }
 
-// export const Textarea = ({ input, meta, ...props }) => {
-
-//     const hasError = meta.touched && meta.error;
-
-//     return (
-//         <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
-//             <textarea {...input} {...props} />
-//             {hasError && <span>{meta.error}</span>}
-//         </div>
-//     )
-// }
-
-// export const Input = ({ input, meta, ...props }) => {
-
-//     const hasError = meta.touched && meta.error;
-
-//     return (
-//         <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
-//             <input {...input} {...props} />
-//             {hasError && <span>{meta.error}</span>}
-//         </div>
-//     )
-// }
-
 export const createField = (placeholder, name, validators, component, controlType, type = {}, props = {}, text = {}) => {
     return (
-        <div>
+        <div className={styles.textField}>
             <Field placeholder={placeholder} name={name} component={component} controlType={controlType} validate={validators} type={type} {...props} />{text}
         </div>
     )
