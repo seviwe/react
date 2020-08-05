@@ -37,7 +37,7 @@ const App = (props) => {
 				<div className="app-wrapper-content">
 					<Switch>
 						<Suspense fallback={<Preloader />}>
-							<Route path='/' exact><Redirect to='/profile' /></Route>
+							<Route exact path='/'><Redirect to='/profile' /></Route>
 							<Route path='/dialogs' render={() => <DialogsContainer />} />
 							<Route path='/profile/:userId?' render={() => <ProfileContainer />} />
 							<Route path='/news' render={() => <News />} />
@@ -47,8 +47,8 @@ const App = (props) => {
 							<Route path='/settings' render={() => <Settings />} />
 							<Route path='/login' render={() => <LoginContainer />} />
 							{/* <Route path='*' render={() => <div><h1><b>404 NOT FOUND</b></h1></div>} /> */}
-							<Route exact path='/' render={() => <ProfileContainer />} />
-							<Route exact path='/react' render={() => <ProfileContainer />} />
+							{/* <Route exact path='/' render={() => <ProfileContainer />} />
+							<Route exact path='/react' render={() => <ProfileContainer />} /> */}
 						</Suspense>
 					</Switch>
 				</div>
