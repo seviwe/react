@@ -1,0 +1,2 @@
+(this["webpackJsonpmy-app"]=this["webpackJsonpmy-app"]||[]).push([[11],{331:function(t,n,e){"use strict";e.d(n,"a",(function(){return s}));var u=e(0),r=e.n(u),a=e(38),c=e(34),i=function(t){return{isAuth:t.auth.isAuth}},s=function(t){return Object(c.b)(i)((function(n){return n.isAuth?r.a.createElement(t,n):r.a.createElement(a.a,{to:"/login"})}))}},426:function(t,n,e){"use strict";e.r(n);var u=e(0),r=e.n(u),a=e(331),c=e(32);n.default=Object(c.d)(a.a)((function(t){return r.a.createElement("div",null,"News")}))}}]);
+//# sourceMappingURL=11.cdf60a17.chunk.js.map

@@ -1,0 +1,2 @@
+(this["webpackJsonpmy-app"]=this["webpackJsonpmy-app"]||[]).push([[12],{331:function(t,n,e){"use strict";e.d(n,"a",(function(){return s}));var u=e(0),r=e.n(u),a=e(38),i=e(34),c=function(t){return{isAuth:t.auth.isAuth}},s=function(t){return Object(i.b)(c)((function(n){return n.isAuth?r.a.createElement(t,n):r.a.createElement(a.a,{to:"/login"})}))}},427:function(t,n,e){"use strict";e.r(n);var u=e(0),r=e.n(u),a=e(331),i=e(32);n.default=Object(i.d)(a.a)((function(t){return r.a.createElement("div",null,"Settings")}))}}]);
+//# sourceMappingURL=12.a0ffcce8.chunk.js.map
